@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/Todot/Src/Scripts/Todo.gd" type="Script" id=1]
+
+[node name="Todo" type="Control" groups=[
+"Todo",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -744.0
+margin_bottom = -560.0
+rect_min_size = Vector2( 280, 40 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 280.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Space" type="Control" parent="HBoxContainer"]
+margin_right = 6.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 6, 40 )
+
+[node name="Todo" type="Button" parent="HBoxContainer"]
+margin_left = 10.0
+margin_right = 270.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 260, 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Space2" type="Control" parent="HBoxContainer"]
+margin_left = 274.0
+margin_right = 280.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 6, 40 )
+[connection signal="button_down" from="HBoxContainer/Todo" to="." method="_on_Todo_button_down"]
