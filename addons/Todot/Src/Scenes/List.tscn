@@ -11,6 +11,7 @@ bg_color = Color( 0.109804, 0.109804, 0.109804, 1 )
 ]]
 margin_right = 14.0
 margin_bottom = 14.0
+rect_min_size = Vector2( 280, 0 )
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
@@ -19,41 +20,45 @@ __meta__ = {
 
 [node name="VBox" type="VBoxContainer" parent="."]
 margin_right = 280.0
-margin_bottom = 231.0
+margin_bottom = 251.0
 custom_constants/separation = 16
 
 [node name="ListTitle" parent="VBox" instance=ExtResource( 2 )]
+margin_right = 280.0
+rect_min_size = Vector2( 260, 40 )
+focus_mode = 0
 custom_constants/hseparation = 0
+enabled_focus_mode = 0
 
 [node name="VBox" type="VBoxContainer" parent="VBox"]
 margin_top = 56.0
 margin_right = 280.0
-margin_bottom = 231.0
+margin_bottom = 251.0
 custom_constants/separation = 5
 
 [node name="Todo" parent="VBox/VBox" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 280.0
-margin_bottom = 40.0
+margin_bottom = 45.0
 
 [node name="Todo2" parent="VBox/VBox" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 45.0
+margin_top = 50.0
 margin_right = 280.0
-margin_bottom = 85.0
+margin_bottom = 95.0
 
 [node name="Todo3" parent="VBox/VBox" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 90.0
+margin_top = 100.0
 margin_right = 280.0
-margin_bottom = 130.0
+margin_bottom = 145.0
 
 [node name="Todo4" parent="VBox/VBox" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 135.0
+margin_top = 150.0
 margin_right = 280.0
-margin_bottom = 175.0
+margin_bottom = 195.0

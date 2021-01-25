@@ -2,10 +2,10 @@ tool
 extends Button
 
 
-var hower := false
+var hover := false
 var drag := false
-onready var title : Label = $Title
-onready var title_edit : LineEdit = $LineEdit
+onready var title : Label = $HBoxContainer/Control/Title
+onready var title_edit : LineEdit = $HBoxContainer/Control/LineEdit
 onready var list : PanelContainer = get_node("../../")
 onready var todot : Control = get_node("../../../../../")
 
@@ -15,17 +15,18 @@ func _on_ListTitle_button_down():
 
 
 func _on_ListTitle_mouse_entered():
-	hower = true
+	hover = true
 
 
 func _on_ListTitle_mouse_exited():
-	hower = false
+	hover = false
 
 
 func _process(delta):
-	if title != null:
+	if title != null and list != null and list.get_parent().name == "ListContainer":
+		title.set_size(Vector2.ZERO)
 		rect_min_size = title.get_size()
-		get_parent().queue_sort()
+		list.get_parent().queue_sort()
 
 
 func _input(event):
@@ -36,9 +37,10 @@ func _input(event):
 				var pos = todot.get_local_mouse_position()
 				if list in todot.mouse.get_children():
 					todot.to_list(list)
+			elif !hover:	reset()
 
 		if event.is_pressed():
-			if hower:
+			if hover:
 				yield(get_tree().create_timer(0.2), "timeout")
 				if list.get_parent().name != "Mouse":
 					title.hide()
@@ -46,7 +48,6 @@ func _input(event):
 					title_edit.select_all()
 					title_edit.grab_focus()
 
-			elif !hower:	reset()
 
 	elif event is InputEventMouseMotion and drag:
 		if list != null:

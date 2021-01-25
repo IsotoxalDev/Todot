@@ -51,10 +51,9 @@ func get_list_index(list : PanelContainer):
 func get_todo_index(todo : Control):
 	var todo_index = Vector2()
 	todo_index.x = preview.get_node("../../../").get_index()
-	todo_index.y = todo.get_index()
+	todo_index.y = preview.get_index()
 	var dist = Vector2()
 	dist.x = todo.list.get_size().x + 30
-	dist.y = todo.get_size().y + 5
 	var title_size =  preview.get_node("../../ListTitle").get_size().y
 	while mousepos.x >= dist.x*todo_index.x:
 		todo_index.x += 1
@@ -65,8 +64,15 @@ func get_todo_index(todo : Control):
 	if todo_index.x > todot.list_container.get_child_count():
 		todo_index.x = todot.list_container.get_child_count()
 
-	while todo.get_position().y >= title_size + (dist.y*todo_index.y):
+	var size = 0
+	var list = todot.list_container.get_child(todo_index.x-1)
+	for i in range(todo_index.y):
+		size = list.get_node("VBox/VBox").get_child(i).get_end().y
+	while todo.get_position().y >= title_size + size:
 		todo_index.y += 1
+		if list.get_node("VBox/VBox").get_child_count() > todo_index.y:
+			size += list.get_node("VBox/VBox").get_child(todo_index.y).get_size().y
+		else:	break
 
 	if todo_index.y < 0:
 		todo_index.y = 1
