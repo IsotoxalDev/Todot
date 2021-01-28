@@ -67,7 +67,8 @@ func get_todo_index(todo : Control):
 	var size = 0
 	var list = todot.list_container.get_child(todo_index.x-1)
 	for i in range(todo_index.y):
-		size = list.get_node("VBox/VBox").get_child(i).get_end().y
+		if list.get_node("VBox/VBox").get_child(i) and list:
+			size = list.get_node("VBox/VBox").get_child(i).get_end().y
 	while todo.get_position().y >= title_size + size:
 		todo_index.y += 1
 		if list.get_node("VBox/VBox").get_child_count() > todo_index.y:

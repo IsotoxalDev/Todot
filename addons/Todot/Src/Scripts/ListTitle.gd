@@ -37,7 +37,7 @@ func _input(event):
 				var pos = todot.get_local_mouse_position()
 				if list in todot.mouse.get_children():
 					todot.to_list(list)
-			elif !hover:	reset()
+			reset()
 
 		if event.is_pressed():
 			if hover:
@@ -53,7 +53,7 @@ func _input(event):
 		if list != null:
 			if list.get_parent().name != "Mouse":
 				todot.to_mouse(list, get_local_mouse_position())
-	elif event.is_action("ui_accept"):	reset()
+	elif event is InputEventKey and event.get_scancode() == KEY_ENTER:	reset()
 
 
 func reset():

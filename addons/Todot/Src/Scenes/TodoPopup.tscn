@@ -1,10 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://addons/Todot/Src/Scripts/TodoPopup.gd" type="Script" id=2]
+[ext_resource path="res://addons/Todot/Assets/Todo.png" type="Texture" id=3]
+[ext_resource path="res://addons/Todot/Assets/Desc.png" type="Texture" id=4]
+[ext_resource path="res://addons/Todot/Assets/Checklist.png" type="Texture" id=5]
+[ext_resource path="res://addons/Todot/Assets/clock.png" type="Texture" id=6]
+[ext_resource path="res://addons/Todot/Src/Scenes/Checklist.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-size = 30
+size = 25
+use_filter = true
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
@@ -22,63 +28,223 @@ expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="DynamicFont" id=4]
-size = 30
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.0745098, 0.0745098, 0.0745098, 0.886275 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 17
+use_filter = true
 font_data = ExtResource( 1 )
 
 [node name="TodoPopup" type="PopupDialog"]
-visible = true
 margin_right = 500.0
 margin_bottom = 500.0
+rect_min_size = Vector2( 550, 500 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+x_width = 15
+x_pos = Vector2( 525, 30 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 500, 500 )
+margin_left = 10.0
+margin_top = 20.0
+margin_right = -40.0
+margin_bottom = -10.0
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="VBoxContainer"]
-margin_right = 500.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 501.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 500, 40 )
+custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="VBoxContainer/Control"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+margin_right = 31.248
+margin_bottom = 40.0
+rect_min_size = Vector2( 31.248, 40 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 41.0
+margin_right = 501.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 460, 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="VBoxContainer/HBoxContainer/Control"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 495.0
-margin_bottom = 40.0
+margin_right = 465.0
+margin_bottom = 36.0
 custom_fonts/font = SubResource( 1 )
-text = "todo name"
+text = "taerisntearst"
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Control"]
 margin_top = 5.0
-margin_right = 500.0
+margin_right = 420.0
 margin_bottom = 36.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TiltleEdit" type="LineEdit" parent="VBoxContainer/Control/HBoxContainer"]
-margin_left = 5.0
-margin_right = 495.0
-margin_bottom = 36.0
-rect_min_size = Vector2( 490, 0 )
+[node name="TitleEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/Control/HBoxContainer"]
+margin_right = 460.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 460, 0 )
 custom_styles/read_only = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/normal = SubResource( 2 )
 custom_fonts/font = SubResource( 4 )
-[connection signal="mouse_entered" from="VBoxContainer/Control" to="." method="_on_Control_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer/Control" to="." method="_on_Control_mouse_exited"]
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 60.0
+margin_right = 501.0
+margin_bottom = 183.0
+custom_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+margin_right = 32.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 32, 40 )
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 42.0
+margin_right = 501.0
+margin_bottom = 123.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_right = 459.0
+margin_bottom = 19.0
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 5 )
+text = "Description"
+valign = 1
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 23.0
+margin_right = 459.0
+margin_bottom = 123.0
+rect_min_size = Vector2( 0, 100 )
+hint_tooltip = "Description"
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+wrap_enabled = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 203.0
+margin_right = 501.0
+margin_bottom = 470.0
+size_flags_vertical = 3
+custom_constants/separation = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer3"]
+margin_right = 350.0
+margin_bottom = 267.0
+rect_min_size = Vector2( 350, 267 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer3/ScrollContainer"]
+margin_right = 350.0
+margin_bottom = 267.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Checklist" parent="VBoxContainer/HBoxContainer3/ScrollContainer/VBoxContainer" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 350.0
+margin_bottom = 267.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer3"]
+margin_left = 390.0
+margin_right = 501.0
+margin_bottom = 267.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_right = 111.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.698039, 0.698039, 0.698039, 1 )
+text = "Add"
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_top = 28.0
+margin_right = 111.0
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Checklist"
+icon = ExtResource( 5 )
+flat = true
+align = 0
+expand_icon = true
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_top = 59.0
+margin_right = 111.0
+margin_bottom = 86.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Due Date"
+icon = ExtResource( 6 )
+flat = true
+align = 0
+expand_icon = true
+
+[node name="CloseButton" type="Button" parent="."]
+margin_left = 510.898
+margin_top = 23.7272
+margin_right = 540.898
+margin_bottom = 53.7272
+focus_mode = 0
+enabled_focus_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/Control" to="." method="_on_Control_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/Control" to="." method="_on_Control_mouse_exited"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]

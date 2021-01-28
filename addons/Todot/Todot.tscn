@@ -26,7 +26,7 @@ __meta__ = {
 }
 
 [node name="ListContainer" type="HBoxContainer" parent="ListScrollContainer"]
-margin_right = 1210.0
+margin_right = 6170.0
 margin_bottom = 251.0
 custom_constants/separation = 30
 
@@ -47,6 +47,86 @@ margin_bottom = 251.0
 [node name="List4" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
 margin_left = 930.0
 margin_right = 1210.0
+margin_bottom = 251.0
+
+[node name="List5" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 1240.0
+margin_right = 1520.0
+margin_bottom = 251.0
+
+[node name="List6" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 1550.0
+margin_right = 1830.0
+margin_bottom = 251.0
+
+[node name="List7" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 1860.0
+margin_right = 2140.0
+margin_bottom = 251.0
+
+[node name="List8" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 2170.0
+margin_right = 2450.0
+margin_bottom = 251.0
+
+[node name="List9" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 2480.0
+margin_right = 2760.0
+margin_bottom = 251.0
+
+[node name="List10" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 2790.0
+margin_right = 3070.0
+margin_bottom = 251.0
+
+[node name="List11" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 3100.0
+margin_right = 3380.0
+margin_bottom = 251.0
+
+[node name="List12" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 3410.0
+margin_right = 3690.0
+margin_bottom = 251.0
+
+[node name="List13" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 3720.0
+margin_right = 4000.0
+margin_bottom = 251.0
+
+[node name="List14" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 4030.0
+margin_right = 4310.0
+margin_bottom = 251.0
+
+[node name="List15" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 4340.0
+margin_right = 4620.0
+margin_bottom = 251.0
+
+[node name="List16" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 4650.0
+margin_right = 4930.0
+margin_bottom = 251.0
+
+[node name="List17" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 4960.0
+margin_right = 5240.0
+margin_bottom = 251.0
+
+[node name="List18" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 5270.0
+margin_right = 5550.0
+margin_bottom = 251.0
+
+[node name="List19" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 5580.0
+margin_right = 5860.0
+margin_bottom = 251.0
+
+[node name="List20" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
+margin_left = 5890.0
+margin_right = 6170.0
 margin_bottom = 251.0
 
 [node name="Mouse" type="Control" parent="."]
