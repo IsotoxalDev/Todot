@@ -59,13 +59,3 @@ func _input(event):
 	elif event is InputEventMouseMotion and drag:
 		if get_parent().name != "Mouse":
 			todot.to_mouse(self, get_local_mouse_position())
-
-
-# func _on_TodoPopup_about_to_show():
-# 	$ColorRect.show()
-# 	$ColorRect.set_position($TodoPopup.get_position()-$ColorRect.get_size()/2)
-# 	$ColorRect.set_size(OS.get_window_size()*100)
-
-
-# func _on_TodoPopup_popup_hide():
-# 	$ColorRect.hide()

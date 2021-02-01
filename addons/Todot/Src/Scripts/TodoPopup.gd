@@ -8,6 +8,7 @@ export var x_pos : Vector2 = Vector2(0, 0) setget set_x_pos
 onready var todo : Control
 onready var close_button : Button = $CloseButton
 onready var title : Label = $VBoxContainer/HBoxContainer/Control/Title
+onready var desc : TextEdit = $VBoxContainer/HBoxContainer2/VBoxContainer/Description
 onready var title_edit : LineEdit = $VBoxContainer/HBoxContainer/Control/HBoxContainer/TitleEdit
 
 
@@ -43,9 +44,17 @@ func _input(event):
 	if event is InputEventKey and event.get_scancode() == KEY_ENTER:	reset()
 
 
+func _on_TodoPopup_popup_hide():
+	todo.text = title_edit.text
+	todo.desc = desc.text
+	pass
+
+
 func todo_pressed(todo : Todo):
 	self.todo = todo
 	title.set_text(todo.text)
+	title_edit.set_text(todo.text)
+	desc.set_text(todo.desc)
 	popup_centered()
 
 
