@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/Todot/Src/Scripts/Todo.gd" type="Script" id=1]
-[ext_resource path="res://addons/Todot/Src/Scenes/TodoPopup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -54,24 +53,6 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -1075.0
-margin_top = -4.0
-margin_right = 4245.0
-margin_bottom = 3464.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TodoPopup" parent="." instance=ExtResource( 2 )]
-margin_right = 550.0
 [connection signal="button_down" from="HBoxContainer/Todo" to="." method="_on_Todo_button_down"]
 [connection signal="mouse_entered" from="HBoxContainer/Todo" to="." method="_on_Todo_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/Todo" to="." method="_on_Todo_mouse_exited"]
-[connection signal="about_to_show" from="TodoPopup" to="." method="_on_TodoPopup_about_to_show"]
-[connection signal="popup_hide" from="TodoPopup" to="." method="_on_TodoPopup_popup_hide"]

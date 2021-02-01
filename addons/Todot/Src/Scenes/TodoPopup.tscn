@@ -48,6 +48,7 @@ use_filter = true
 font_data = ExtResource( 1 )
 
 [node name="TodoPopup" type="PopupDialog"]
+visible = true
 margin_right = 500.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 550, 500 )
@@ -194,6 +195,8 @@ size_flags_vertical = 3
 [node name="Checklist" parent="VBoxContainer/HBoxContainer3/ScrollContainer/VBoxContainer" instance=ExtResource( 7 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
 margin_right = 350.0
 margin_bottom = 267.0
 
