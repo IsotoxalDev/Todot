@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "List_preview",
 "language": "GDScript",
 "path": "res://addons/Todot/Src/Scripts/ListPreview.gd"
+}, {
+"base": "Control",
+"class": "Todo",
+"language": "GDScript",
+"path": "res://addons/Todot/Src/Scripts/Todo.gd"
 } ]
 _global_script_class_icons={
-"List_preview": ""
+"List_preview": "",
+"Todo": ""
 }
 
 [application]

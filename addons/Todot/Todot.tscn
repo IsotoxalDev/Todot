@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/Todot/Src/Scenes/List.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/Todot/Todot.tres" type="Theme" id=2]
 [ext_resource path="res://addons/Todot/Src/Scripts/Mouse.gd" type="Script" id=3]
 [ext_resource path="res://addons/Todot/Todot.gd" type="Script" id=4]
+[ext_resource path="res://addons/Todot/Src/Scenes/TodoPopup.tscn" type="PackedScene" id=5]
 
 [node name="Todot" type="Control"]
 anchor_right = 1.0
@@ -129,6 +130,25 @@ margin_left = 5890.0
 margin_right = 6170.0
 margin_bottom = 251.0
 
+[node name="Dialouges" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogueBackground" type="ColorRect" parent="Dialouges"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.509804 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TodoPopup" parent="Dialouges" instance=ExtResource( 5 )]
+
 [node name="Mouse" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -139,5 +159,8 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="about_to_show" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="show"]
+[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="hide"]
+[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/TodoPopup" method="_on_TodoPopup_popup_hide"]
 
 [editable path="ListScrollContainer/ListContainer/List"]

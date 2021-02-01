@@ -5,6 +5,7 @@ extends Control
 var on := false
 var preview : PackedScene = preload("res://addons/Todot/Src/Scenes/Preview.tscn")
 onready var mouse : Control = $Mouse
+onready var dialogues : Control = $Dialouges
 onready var list_container :HBoxContainer = $ListScrollContainer/ListContainer
 
 
