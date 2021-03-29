@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://addons/Todot/Src/Scenes/List.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/Todot/Todot.tres" type="Theme" id=2]
 [ext_resource path="res://addons/Todot/Src/Scripts/Mouse.gd" type="Script" id=3]
 [ext_resource path="res://addons/Todot/Todot.gd" type="Script" id=4]
 [ext_resource path="res://addons/Todot/Src/Scenes/TodoPopup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/Todot/Src/Scripts/AddListButton.gd" type="Script" id=6]
+[ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 7 )
 
 [node name="Todot" type="Control"]
 anchor_right = 1.0
@@ -27,108 +32,17 @@ __meta__ = {
 }
 
 [node name="ListContainer" type="HBoxContainer" parent="ListScrollContainer"]
-margin_right = 6170.0
-margin_bottom = 251.0
+margin_right = 35.0
+margin_bottom = 56.0
 custom_constants/separation = 30
 
-[node name="List" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_right = 280.0
-margin_bottom = 251.0
-
-[node name="List2" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 310.0
-margin_right = 590.0
-margin_bottom = 251.0
-
-[node name="List3" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 620.0
-margin_right = 900.0
-margin_bottom = 251.0
-
-[node name="List4" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 930.0
-margin_right = 1210.0
-margin_bottom = 251.0
-
-[node name="List5" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 1240.0
-margin_right = 1520.0
-margin_bottom = 251.0
-
-[node name="List6" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 1550.0
-margin_right = 1830.0
-margin_bottom = 251.0
-
-[node name="List7" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 1860.0
-margin_right = 2140.0
-margin_bottom = 251.0
-
-[node name="List8" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 2170.0
-margin_right = 2450.0
-margin_bottom = 251.0
-
-[node name="List9" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 2480.0
-margin_right = 2760.0
-margin_bottom = 251.0
-
-[node name="List10" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 2790.0
-margin_right = 3070.0
-margin_bottom = 251.0
-
-[node name="List11" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 3100.0
-margin_right = 3380.0
-margin_bottom = 251.0
-
-[node name="List12" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 3410.0
-margin_right = 3690.0
-margin_bottom = 251.0
-
-[node name="List13" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 3720.0
-margin_right = 4000.0
-margin_bottom = 251.0
-
-[node name="List14" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 4030.0
-margin_right = 4310.0
-margin_bottom = 251.0
-
-[node name="List15" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 4340.0
-margin_right = 4620.0
-margin_bottom = 251.0
-
-[node name="List16" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 4650.0
-margin_right = 4930.0
-margin_bottom = 251.0
-
-[node name="List17" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 4960.0
-margin_right = 5240.0
-margin_bottom = 251.0
-
-[node name="List18" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 5270.0
-margin_right = 5550.0
-margin_bottom = 251.0
-
-[node name="List19" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 5580.0
-margin_right = 5860.0
-margin_bottom = 251.0
-
-[node name="List20" parent="ListScrollContainer/ListContainer" instance=ExtResource( 1 )]
-margin_left = 5890.0
-margin_right = 6170.0
-margin_bottom = 251.0
+[node name="Button" type="Button" parent="ListScrollContainer/ListContainer"]
+margin_right = 35.0
+margin_bottom = 56.0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 1 )
+text = "+"
+script = ExtResource( 6 )
 
 [node name="Dialouges" type="Control" parent="."]
 anchor_right = 1.0
@@ -159,8 +73,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Button" to="ListScrollContainer/ListContainer/Button" method="add_list"]
 [connection signal="about_to_show" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="show"]
 [connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="hide"]
 [connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/TodoPopup" method="_on_TodoPopup_popup_hide"]
-
-[editable path="ListScrollContainer/ListContainer/List"]

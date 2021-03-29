@@ -8,9 +8,10 @@ export var x_pos : Vector2 = Vector2(0, 0) setget set_x_pos
 onready var todo : Control
 onready var close_button : Button = $CloseButton
 onready var title : Label = $VBoxContainer/HBoxContainer/Control/Title
+onready var checklist = preload("res://addons/Todot/Src/Scenes/Checklist.tscn")
+onready var checklist_container = $VBoxContainer/HBoxContainer3/ScrollContainer/ChecklistContainer
 onready var desc : TextEdit = $VBoxContainer/HBoxContainer2/VBoxContainer/Description
 onready var title_edit : LineEdit = $VBoxContainer/HBoxContainer/Control/HBoxContainer/TitleEdit
-
 
 func _on_Control_mouse_entered():
 	hover = true
@@ -74,3 +75,7 @@ func reset():
 		title.text = title_edit.text
 		title_edit.hide()
 		todo.title.set_text(title.text)
+
+
+func _on_Button_pressed():
+	checklist_container.add_child(checklist.instance())

@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/Todot/Src/Scripts/AddList.gd" type="Script" id=1]
+[ext_resource path="res://addons/Todot/Src/Scenes/ListTitle.tscn" type="PackedScene" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.109804, 0.109804, 0.109804, 1 )
+
+[node name="AddList" type="PanelContainer" groups=[
+"List",
+]]
+margin_right = 280.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 280, 60 )
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 341.0
+margin_bottom = 60.0
+custom_constants/separation = 20
+
+[node name="ListTitle" parent="HBoxContainer" instance=ExtResource( 2 )]
+margin_bottom = 60.0
+rect_min_size = Vector2( 280, 60 )
+focus_mode = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/hseparation = 0
+enabled_focus_mode = 0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+margin_left = 300.0
+margin_right = 341.0
+margin_bottom = 60.0
+text = "ADD"
+[connection signal="on_enter_pressed" from="HBoxContainer/ListTitle" to="." method="_on_ListTitle_on_enter_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="add_list"]

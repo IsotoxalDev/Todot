@@ -21,8 +21,8 @@ size = 18
 font_data = ExtResource( 2 )
 
 [node name="ListTitle" type="Button"]
-margin_right = 270.0
-margin_bottom = 40.0
+margin_right = 280.0
+margin_bottom = 44.0
 rect_min_size = Vector2( 280, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -42,7 +42,6 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 260.0
 margin_bottom = 50.0
 alignment = 1
 __meta__ = {
@@ -71,7 +70,6 @@ __meta__ = {
 }
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer/Control"]
-visible = false
 margin_right = 260.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 260, 40 )

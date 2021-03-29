@@ -3,10 +3,13 @@ extends Control
 
 
 var on := false
-var preview : PackedScene = preload("res://addons/Todot/Src/Scenes/Preview.tscn")
+var data = {
+	"Lists" : {}
+}
 onready var mouse : Control = $Mouse
 onready var dialogues : Control = $Dialouges
 onready var list_container :HBoxContainer = $ListScrollContainer/ListContainer
+var preview : PackedScene = preload("res://addons/Todot/Src/Scenes/Preview.tscn")
 
 
 func to_mouse(object : Control, offset):
@@ -26,7 +29,7 @@ func to_list(object : Node):
 
 	if object.is_in_group("List"):
 		list_container.add_child(object)
-		list_container.move_child(object, mouse.list_index)
+		list_container.move_child(object, (mouse.list_index if mouse.list_index != -1 else 0))
 		list_container.queue_sort()
 
 	elif object.is_in_group("Todo"):

@@ -2,6 +2,9 @@ tool
 extends Button
 
 
+signal on_enter_pressed
+
+
 var hover := false
 var drag := false
 onready var title : Label = $HBoxContainer/Control/Title
@@ -53,7 +56,10 @@ func _input(event):
 		if list != null:
 			if list.get_parent().name != "Mouse":
 				todot.to_mouse(list, get_local_mouse_position())
-	elif event is InputEventKey and event.get_scancode() == KEY_ENTER:	reset()
+	elif event is InputEventKey and event.get_scancode() == KEY_ENTER:
+		if event.pressed:
+			reset()
+			emit_signal("on_enter_pressed")
 
 
 func reset():

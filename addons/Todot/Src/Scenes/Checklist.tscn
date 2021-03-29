@@ -1,23 +1,24 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://addons/Todot/Assets/Checklist.png" type="Texture" id=2]
+[ext_resource path="res://addons/Todot/Src/Scripts/Checklist.gd" type="Script" id=3]
+[ext_resource path="res://addons/Todot/Src/Scenes/CheckItem.tscn" type="PackedScene" id=4]
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0 )
 
-[sub_resource type="DynamicFont" id=1]
-size = 25
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.647059, 1, 0.32549, 1 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 0.192157 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -34,13 +35,14 @@ margin_bottom = -0.28064
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TitleContainer" type="HBoxContainer" parent="."]
-margin_right = 1024.0
-margin_bottom = 31.0
+margin_right = 1023.0
+margin_bottom = 25.0
 
 [node name="TextureRect" type="TextureRect" parent="TitleContainer"]
 margin_right = 25.0
@@ -50,76 +52,55 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
-[node name="TextEdit" type="TextEdit" parent="TitleContainer"]
-visible = false
-margin_left = 34.0
-margin_right = 527.0
-margin_bottom = 31.0
-size_flags_horizontal = 3
-custom_styles/read_only = SubResource( 4 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/normal = SubResource( 4 )
-custom_styles/completion = SubResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="TitleContainer"]
+[node name="TitleEdit" type="LineEdit" parent="TitleContainer"]
 margin_left = 29.0
-margin_right = 1024.0
-margin_bottom = 31.0
+margin_right = 1023.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ProgressContainer" type="HBoxContainer" parent="."]
-margin_top = 41.0
-margin_right = 1024.0
-margin_bottom = 55.0
+margin_top = 35.0
+margin_right = 1023.0
+margin_bottom = 49.0
 
 [node name="PercentLabel" type="Label" parent="ProgressContainer"]
-margin_right = 28.0
+margin_right = 8.0
 margin_bottom = 14.0
-text = "50%"
+text = "0"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="ProgressContainer"]
-margin_left = 32.0
-margin_right = 1024.0
+margin_left = 12.0
+margin_right = 1023.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 0, 10 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
-value = 50.0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
 percent_visible = false
 
-[node name="CheckboxContainer" type="VBoxContainer" parent="."]
-margin_top = 65.0
-margin_right = 1024.0
-margin_bottom = 89.0
+[node name="CheckItemContainer" type="VBoxContainer" parent="."]
+margin_top = 59.0
+margin_right = 1023.0
+margin_bottom = 83.0
 
-[node name="CheckItem" type="HBoxContainer" parent="CheckboxContainer"]
-margin_right = 1024.0
-margin_bottom = 24.0
+[node name="CheckItem" parent="CheckItemContainer" instance=ExtResource( 4 )]
 
-[node name="CheckBox" type="CheckBox" parent="CheckboxContainer/CheckItem"]
-margin_right = 24.0
-margin_bottom = 24.0
-focus_mode = 0
-size_flags_horizontal = 0
-flat = true
-
-[node name="Label" type="Label" parent="CheckboxContainer/CheckItem"]
-margin_left = 28.0
-margin_top = 5.0
-margin_right = 1024.0
-margin_bottom = 19.0
-size_flags_horizontal = 3
-text = "smth"
+[node name="Button" type="Button" parent="."]
+margin_left = 491.0
+margin_top = 93.0
+margin_right = 532.0
+margin_bottom = 113.0
+size_flags_horizontal = 4
+text = "ADD"
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

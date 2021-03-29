@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://addons/Todot/Src/Scenes/Todo.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/Todot/Src/Scripts/List.gd" type="Script" id=1]
 [ext_resource path="res://addons/Todot/Src/Scenes/ListTitle.tscn" type="PackedScene" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -14,17 +14,18 @@ margin_bottom = 14.0
 rect_min_size = Vector2( 280, 0 )
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBox" type="VBoxContainer" parent="."]
 margin_right = 280.0
-margin_bottom = 251.0
+margin_bottom = 76.0
 custom_constants/separation = 16
 
 [node name="ListTitle" parent="VBox" instance=ExtResource( 2 )]
-margin_right = 280.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 260, 40 )
 focus_mode = 0
 custom_constants/hseparation = 0
@@ -33,32 +34,11 @@ enabled_focus_mode = 0
 [node name="VBox" type="VBoxContainer" parent="VBox"]
 margin_top = 56.0
 margin_right = 280.0
-margin_bottom = 251.0
+margin_bottom = 76.0
 custom_constants/separation = 5
 
-[node name="Todo" parent="VBox/VBox" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Button" type="Button" parent="VBox/VBox"]
 margin_right = 280.0
-margin_bottom = 45.0
-
-[node name="Todo2" parent="VBox/VBox" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 50.0
-margin_right = 280.0
-margin_bottom = 95.0
-
-[node name="Todo3" parent="VBox/VBox" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 100.0
-margin_right = 280.0
-margin_bottom = 145.0
-
-[node name="Todo4" parent="VBox/VBox" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 150.0
-margin_right = 280.0
-margin_bottom = 195.0
+margin_bottom = 20.0
+text = "ADD"
+[connection signal="pressed" from="VBox/VBox/Button" to="." method="_on_Button_pressed"]

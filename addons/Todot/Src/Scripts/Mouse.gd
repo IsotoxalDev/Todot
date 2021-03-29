@@ -18,7 +18,7 @@ func _input(event):
 			if child.is_in_group("List"):
 				if list_index != get_list_index(child):
 					list_index = get_list_index(child)
-					preview.get_parent().move_child(preview, list_index)
+					preview.get_parent().move_child(preview, list_index if list_index != -1 else 0)
 
 			if child.is_in_group("Todo"):
 				if todo_index != get_todo_index(child):
@@ -40,10 +40,10 @@ func get_list_index(list : PanelContainer):
 		index+=1
 
 	if index < 0:
-		index = 0
+		index = 1
 
-	if index > todot.list_container.get_child_count():
-		index = todot.list_container.get_child_count()
+	if index >= todot.list_container.get_child_count():
+		index = todot.list_container.get_child_count() -1
 
 	return index-1
 
