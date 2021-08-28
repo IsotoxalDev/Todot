@@ -1,9 +1,9 @@
 # Todot
-Todot is a kanban styled (trello like) todo and planning addon for the godot game engien
+Todot is a kanban styled todo and planning addon for the [godot game engine](https://godotengine.org)
 
 Why
 --
-Going to trello back and forth is kinda daunting. With this you have it as a new tab among the 2d 3d asset-lib. This is offline and you have it godot what more could you ask for? ( Note: This is an actual question i want you to make issues for the features you need or that is never gonna come to todot. )
+Going to trello back and forth is kinda daunting. With this you have it as a new tab among the 2d 3d asset-lib. This is offline and you have it in godot what more could you ask for? ( Note: This is an actual question i want you to make issues for the features you need or that is never gonna come to todot. )
 
 How to install?
 --
