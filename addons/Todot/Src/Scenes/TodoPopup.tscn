@@ -47,7 +47,6 @@ use_filter = true
 font_data = ExtResource( 1 )
 
 [node name="TodoPopup" type="PopupDialog"]
-visible = true
 margin_right = 500.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 550, 500 )
