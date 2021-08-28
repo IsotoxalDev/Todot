@@ -12,6 +12,7 @@ onready var checklist = preload("res://addons/Todot/Src/Scenes/Checklist.tscn")
 onready var checklist_container = $VBoxContainer/HBoxContainer3/ScrollContainer/ChecklistContainer
 onready var desc : TextEdit = $VBoxContainer/HBoxContainer2/VBoxContainer/Description
 onready var title_edit : LineEdit = $VBoxContainer/HBoxContainer/Control/HBoxContainer/TitleEdit
+onready var todot = get_node("../../")
 
 func _on_Control_mouse_entered():
 	hover = true
@@ -48,6 +49,19 @@ func _input(event):
 func _on_TodoPopup_popup_hide():
 	todo.text = title_edit.text
 	todo.desc = desc.text
+	todo.checklist = []
+	for i in checklist_container.get_children():
+		var checkitems = []
+		for j in i.check_item_container.get_children():
+			checkitems.append({
+				'name': j.get_node("LineEdit").text,
+				'done': j.get_node("CheckBox").pressed
+			})
+		todo.checklist.append({
+			'name': i.title.text,
+			'checkitems': checkitems,
+		})
+	todot.save()
 	pass
 
 
@@ -56,6 +70,13 @@ func todo_pressed(todo : Todo):
 	title.set_text(todo.text)
 	title_edit.set_text(todo.text)
 	desc.set_text(todo.desc)
+	for i in checklist_container.get_children(): i.queue_free()
+	for i in todo.checklist:
+		var checklist_inst = checklist.instance()
+		checklist_container.add_child(checklist_inst)
+		checklist_inst.title.text = i.name
+		for j in i.checkitems:
+			checklist_inst._add_check_item(j.name, j.done)
 	popup_centered()
 
 
@@ -78,4 +99,5 @@ func reset():
 
 
 func _on_Button_pressed():
-	checklist_container.add_child(checklist.instance())
+	var checklist_inst = checklist.instance()
+	checklist_container.add_child(checklist_inst)

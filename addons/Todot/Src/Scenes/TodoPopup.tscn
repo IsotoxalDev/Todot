@@ -119,6 +119,7 @@ __meta__ = {
 }
 
 [node name="TitleEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/Control/HBoxContainer"]
+visible = false
 margin_right = 460.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 460, 0 )
@@ -238,6 +239,7 @@ flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/Control" to="." method="_on_Control_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/Control" to="." method="_on_Control_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/VBoxContainer/Button" to="." method="_on_Button_pressed"]

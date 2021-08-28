@@ -67,3 +67,4 @@ func reset():
 		title.show()
 		title_edit.hide()
 		title.set_text(title_edit.get_text())
+		todot.save()

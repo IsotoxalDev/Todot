@@ -9,6 +9,7 @@ var drag := false
 var hover := false
 var desc := ""
 var text := "" setget set_text
+var checklist := []
 onready var title : Label = $HBoxContainer/Todo/Title
 onready var list : PanelContainer = get_node("../../../")
 onready var todot :Control = get_node("../../../../../../")

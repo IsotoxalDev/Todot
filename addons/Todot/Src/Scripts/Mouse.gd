@@ -81,4 +81,4 @@ func get_todo_index(todo : Control):
 	if todo_index.y > preview.get_parent().get_child_count():
 		todo_index.y = preview.get_parent().get_child_count()
 
-	return todo_index - Vector2(1, 1)
+	return todo_index - Vector2(1, 2)
