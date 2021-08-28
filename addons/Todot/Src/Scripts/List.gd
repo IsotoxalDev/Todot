@@ -6,6 +6,9 @@ onready var todo = preload("res://addons/Todot/Src/Scenes/Todo.tscn")
 onready var todot: Control = get_node("../../../")
 onready var title = $VBox/ListTitle
 
+func _ready():
+	var t = todot.get_theme().get_stylebox("read_only", "LineEdit")
+	add_stylebox_override("panel", t)
 
 func _on_Button_pressed():
 	var _n = add_todo()

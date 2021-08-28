@@ -77,5 +77,5 @@ __meta__ = {
 
 [connection signal="pressed" from="ListScrollContainer/ListContainer/Button" to="ListScrollContainer/ListContainer/Button" method="add_list"]
 [connection signal="about_to_show" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="show"]
-[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/TodoPopup" method="_on_TodoPopup_popup_hide"]
 [connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="hide"]
+[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/TodoPopup" method="_on_TodoPopup_popup_hide"]
