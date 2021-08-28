@@ -33,7 +33,6 @@ func save():
 
 		data.append(list_data)
 	var file: File = File.new()
-	print(data)
 	file.open("res://addons/Todot/data", File.WRITE)
 	file.store_var(data, true)
 
@@ -53,8 +52,6 @@ func load_data():
 			todo.set_text(j.text)
 			todo.desc = j.desc
 			todo.checklist = j.checklist
-	print(data)
-	
 
 func to_mouse(object : Control, offset):
 	var new_preview : List_preview= preview.instance()
