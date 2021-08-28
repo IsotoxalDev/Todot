@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -744.0
 margin_bottom = -565.0
-rect_min_size = Vector2( 250, 45 )
+rect_min_size = Vector2( 280, 45 )
 size_flags_horizontal = 3
 size_flags_vertical = 0
 script = ExtResource( 1 )
@@ -22,25 +22,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 280.0
-margin_bottom = 35.0
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Todo" type="Button" parent="HBoxContainer"]
-margin_left = 10.0
-margin_right = 270.0
+[node name="Todo" type="Button" parent="."]
+margin_left = 2.0
+margin_right = 278.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 260, 40 )
+rect_min_size = Vector2( 276, 40 )
 focus_mode = 0
+size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="HBoxContainer/Todo"]
+[node name="Title" type="Label" parent="Todo"]
 margin_left = 5.0
 margin_right = 255.0
 margin_bottom = 30.0
@@ -54,6 +47,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="button_down" from="HBoxContainer/Todo" to="." method="_on_Todo_button_down"]
-[connection signal="mouse_entered" from="HBoxContainer/Todo" to="." method="_on_Todo_mouse_entered"]
-[connection signal="mouse_exited" from="HBoxContainer/Todo" to="." method="_on_Todo_mouse_exited"]
+[connection signal="button_down" from="Todo" to="." method="_on_Todo_button_down"]
+[connection signal="mouse_entered" from="Todo" to="." method="_on_Todo_mouse_entered"]
+[connection signal="mouse_exited" from="Todo" to="." method="_on_Todo_mouse_exited"]

@@ -32,7 +32,7 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "Todot" )
+enabled=PoolStringArray( "res://addons/Todot/plugin.cfg" )
 
 [input]
 
@@ -49,4 +49,3 @@ ui_accept={
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"
