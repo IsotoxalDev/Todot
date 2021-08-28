@@ -7,7 +7,7 @@
 [ext_resource path="res://addons/Todot/Src/Scripts/AddListButton.gd" type="Script" id=6]
 [ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=7]
 
-[sub_resource type="DynamicFont" id=1502]
+[sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 7 )
 
@@ -40,7 +40,7 @@ custom_constants/separation = 30
 margin_right = 35.0
 margin_bottom = 56.0
 size_flags_vertical = 0
-custom_fonts/font = SubResource( 1502 )
+custom_fonts/font = SubResource( 1 )
 text = "+"
 script = ExtResource( 6 )
 
@@ -77,5 +77,5 @@ __meta__ = {
 
 [connection signal="pressed" from="ListScrollContainer/ListContainer/Button" to="ListScrollContainer/ListContainer/Button" method="add_list"]
 [connection signal="about_to_show" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="show"]
-[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="hide"]
 [connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/TodoPopup" method="_on_TodoPopup_popup_hide"]
+[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="hide"]

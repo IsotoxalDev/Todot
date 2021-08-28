@@ -38,20 +38,21 @@ func save():
 
 func load_data():
 	var file: File = File.new()
-	file.open("res://addons/Todot/data", File.READ)
-	var data: Array = file.get_var(true)
-	for i in data:
-		var list_instance = list.instance()
-		list_container.add_child(list_instance)
-		list_container.move_child(list_instance, list_container.get_child_count()-2)
-		list_instance.title.title.text = i.title
-		list_instance.title.title_edit.text = i.title
-		list_instance.title.title_edit.hide()
-		for j in i.todos:
-			var todo = list_instance.add_todo()
-			todo.set_text(j.text)
-			todo.desc = j.desc
-			todo.checklist = j.checklist
+	if file.file_exists("res://addons/Todot/data"):
+		file.open("res://addons/Todot/data", File.READ)
+		var data: Array = file.get_var(true)
+		for i in data:
+			var list_instance = list.instance()
+			list_container.add_child(list_instance)
+			list_container.move_child(list_instance, list_container.get_child_count()-2)
+			list_instance.title.title.text = i.title
+			list_instance.title.title_edit.text = i.title
+			list_instance.title.title_edit.hide()
+			for j in i.todos:
+				var todo = list_instance.add_todo()
+				todo.set_text(j.text)
+				todo.desc = j.desc
+				todo.checklist = j.checklist
 
 func to_mouse(object : Control, offset):
 	var new_preview : List_preview= preview.instance()
