@@ -3,7 +3,13 @@ Todot is a kanban styled todo and planning addon for the [godot game engine](htt
 
 Why
 --
-Going to trello back and forth is kinda daunting. With this you have it as a new tab among the 2d 3d asset-lib. This is offline and you have it in godot what more could you ask for? ( Note: This is an actual question i want you to make issues for the features you need or that is never gonna come to todot. )
+Opening trello and going back and forth between it and godot is... not the most efficient thing sometimes. Depending on your internet connection or your willingness to open a browser while your ram has 100MB left, using it might just end up being counterproductive. But... with this addon, you've got all the boards and cards you could ever ask for - right beside the 2D, 3D, Script and AssetLib tabs. This addon works offline and you have access to it in the comfort of your own godot project. What more could you ask for? ( Note: This is an actual question. I want you to make issues for the features you need or that is never gonna come to todot. )
+
+What to expect
+--
+1. No way to remove a todo or list.
+2. You have to fix the font scaling issues your selves.
+3. has a lot of bugs.
 
 How to install?
 --
