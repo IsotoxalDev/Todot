@@ -24,4 +24,4 @@ func _process(delta):
 				finished_task += float(item.get_node("CheckBox").pressed)
 			var progress = finished_task/check_item_container.get_child_count()*100
 			progress_bar.value = progress
-			percent_label.text = str(progress)
+			percent_label.text = str(progress, "%")

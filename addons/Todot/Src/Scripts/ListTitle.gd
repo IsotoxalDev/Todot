@@ -66,5 +66,9 @@ func reset():
 	if title != null:
 		title.show()
 		title_edit.hide()
-		title.set_text(title_edit.get_text())
+		if title_edit.get_text():
+			title.set_text(title_edit.get_text())
+		else:
+			title.set_text(title_edit.placeholder_text)
+			
 		todot.save()

@@ -33,6 +33,7 @@ func _draw():
 
 
 func _input(event):
+	print(hover)
 	if event is InputEventMouseButton and event.is_pressed():
 		if hover:
 			title.hide()
@@ -40,7 +41,6 @@ func _input(event):
 			title_edit.text = title.text
 			title_edit.select_all()
 			title_edit.grab_focus()
-			title.hide()
 		elif !hover:
 			reset()
 	if event is InputEventKey and event.get_scancode() == KEY_ENTER:	reset()
@@ -69,6 +69,11 @@ func todo_pressed(todo : Todo):
 	self.todo = todo
 	title.set_text(todo.text)
 	title_edit.set_text(todo.text)
+	if !title.text:
+		title.hide()
+		title_edit.show()
+		title_edit.text = title.text
+		title_edit.grab_focus()
 	desc.set_text(todo.desc)
 	for i in checklist_container.get_children(): i.queue_free()
 	for i in todo.checklist:
