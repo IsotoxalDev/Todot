@@ -33,7 +33,6 @@ func _draw():
 
 
 func _input(event):
-	print(hover)
 	if event is InputEventMouseButton and event.is_pressed():
 		if hover:
 			title.hide()
