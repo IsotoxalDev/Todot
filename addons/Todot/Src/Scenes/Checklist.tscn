@@ -59,6 +59,7 @@ size_flags_horizontal = 3
 custom_styles/focus = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
+placeholder_text = "Enter Goal..."
 __meta__ = {
 "_edit_use_anchors_": false
 }

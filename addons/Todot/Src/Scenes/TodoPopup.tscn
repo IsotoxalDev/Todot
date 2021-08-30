@@ -44,7 +44,6 @@ use_filter = true
 font_data = ExtResource( 1 )
 
 [node name="TodoPopup" type="PopupDialog"]
-visible = true
 margin_right = 500.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 550, 500 )
@@ -125,6 +124,7 @@ custom_styles/read_only = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/normal = SubResource( 2 )
 custom_fonts/font = SubResource( 4 )
+placeholder_text = "Enter Title..."
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 60.0
