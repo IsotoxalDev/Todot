@@ -38,5 +38,6 @@ margin_left = 300.0
 margin_right = 341.0
 margin_bottom = 60.0
 text = "ADD"
+
 [connection signal="on_enter_pressed" from="HBoxContainer/ListTitle" to="." method="_on_ListTitle_on_enter_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="add_list"]

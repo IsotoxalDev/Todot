@@ -75,9 +75,11 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 260, 40 )
 custom_styles/normal = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
+placeholder_text = "Enter Title..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="button_down" from="." to="." method="_on_ListTitle_button_down"]
 [connection signal="mouse_entered" from="." to="." method="_on_ListTitle_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_ListTitle_mouse_exited"]

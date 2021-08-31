@@ -59,6 +59,7 @@ size_flags_horizontal = 3
 custom_styles/focus = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
+placeholder_text = "Enter Goal..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,16 +70,16 @@ margin_right = 1023.0
 margin_bottom = 49.0
 
 [node name="PercentLabel" type="Label" parent="ProgressContainer"]
-margin_right = 8.0
+margin_right = 20.0
 margin_bottom = 14.0
-text = "0"
+text = "0%"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="ProgressContainer"]
-margin_left = 12.0
+margin_left = 24.0
 margin_right = 1023.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 0, 10 )

@@ -11,6 +11,9 @@ font_data = ExtResource( 1 )
 [node name="CheckItem" type="HBoxContainer"]
 margin_right = 1023.0
 margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CheckBox" type="CheckBox" parent="."]
 margin_right = 24.0
@@ -26,3 +29,4 @@ size_flags_horizontal = 3
 custom_styles/focus = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
+placeholder_text = "Enter Sub-Goals..."
