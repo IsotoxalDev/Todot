@@ -50,7 +50,7 @@ func _input(event):
 			var pos = todot.get_local_mouse_position()
 			if self in todot.mouse.get_children():
 				todot.to_list(self)
-		elif event.is_pressed():
+		elif event.is_pressed() and !drag:
 			if hover:
 				yield(get_tree().create_timer(0.2), "timeout")
 				if get_parent().name != "Mouse":

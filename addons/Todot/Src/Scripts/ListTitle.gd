@@ -32,6 +32,18 @@ func _process(delta):
 		list.get_parent().queue_sort()
 
 
+func _gui_input(event: InputEvent) -> void:
+	if event.is_pressed():
+			if hover:
+				yield(get_tree().create_timer(0.2), "timeout")
+				if list.get_parent().name != "Mouse":
+					title.hide()
+					title_edit.show()
+					title_edit.editable = true
+					title_edit.select_all()
+					title_edit.grab_focus()
+
+
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == 1:
 		if !event.is_pressed():
@@ -41,16 +53,6 @@ func _input(event):
 				if list in todot.mouse.get_children():
 					todot.to_list(list)
 			reset()
-
-		if event.is_pressed():
-			if hover:
-				yield(get_tree().create_timer(0.2), "timeout")
-				if list.get_parent().name != "Mouse":
-					title.hide()
-					title_edit.show()
-					title_edit.select_all()
-					title_edit.grab_focus()
-
 
 	elif event is InputEventMouseMotion and drag:
 		if list != null:
@@ -66,6 +68,7 @@ func reset():
 	if title != null:
 		title.show()
 		title_edit.hide()
+		title_edit.editable = false
 		if title_edit.get_text():
 			title.set_text(title_edit.get_text())
 		else:

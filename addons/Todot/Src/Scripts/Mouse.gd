@@ -16,13 +16,16 @@ func _input(event):
 			mousepos = todot.get_local_mouse_position()
 
 			if child.is_in_group("List"):
-				if list_index != get_list_index(child):
-					list_index = get_list_index(child)
+				var scroll_hor :float = preview.get_parent().get_parent().scroll_horizontal
+				if list_index != get_list_index(child, scroll_hor):
+					list_index = get_list_index(child, scroll_hor)
 					preview.get_parent().move_child(preview, list_index if list_index != -1 else 0)
 
 			if child.is_in_group("Todo"):
-				if todo_index != get_todo_index(child):
-					todo_index = get_todo_index(child)
+				var scroll_hor :float = preview.get_parent().get_parent().get_parent().get_parent().get_parent().scroll_horizontal
+				var scroll_ver :float = preview.get_parent().get_parent().get_parent().get_parent().get_parent().scroll_vertical
+				if todo_index != get_todo_index(child, scroll_hor, scroll_ver):
+					todo_index = get_todo_index(child, scroll_hor, scroll_ver)
 					preview.get_parent().remove_child(preview)
 					var list = todot.list_container.get_child(todo_index.x)
 					list.get_node("VBox/VBox").add_child(preview)
@@ -32,11 +35,11 @@ func _input(event):
 					preview.get_parent().move_child(preview, todo_index.y)
 
 
-func get_list_index(list : PanelContainer):
+func get_list_index(list : PanelContainer,scroll_hor :float):
 	var index = preview.get_index()
 	var dist = list.get_size().x+30
-
-	while mousepos.x >= dist*index:
+	
+	while mousepos.x+scroll_hor >= dist*index:
 		index+=1
 
 	if index < 0:
@@ -48,14 +51,15 @@ func get_list_index(list : PanelContainer):
 	return index-1
 
 
-func get_todo_index(todo : Control):
+func get_todo_index(todo : Control,scroll_hor :float, scroll_ver :float):
 	var todo_index = Vector2()
 	todo_index.x = preview.get_node("../../../").get_index()
 	todo_index.y = preview.get_index()
 	var dist = Vector2()
 	dist.x = todo.list.get_size().x + 30
 	var title_size =  preview.get_node("../../ListTitle").get_size().y
-	while mousepos.x >= dist.x*todo_index.x:
+	
+	while mousepos.x+scroll_hor >= dist.x*todo_index.x:
 		todo_index.x += 1
 
 	if todo_index.x < 0:
@@ -69,7 +73,7 @@ func get_todo_index(todo : Control):
 	for i in range(todo_index.y):
 		if list.get_node("VBox/VBox").get_child(i) and list:
 			size = list.get_node("VBox/VBox").get_child(i).get_end().y
-	while todo.get_position().y >= title_size + size:
+	while todo.get_position().y + scroll_ver >= title_size + size:
 		todo_index.y += 1
 		if list.get_node("VBox/VBox").get_child_count() > todo_index.y:
 			size += list.get_node("VBox/VBox").get_child(todo_index.y).get_size().y

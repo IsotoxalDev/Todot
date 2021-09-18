@@ -70,6 +70,7 @@ __meta__ = {
 }
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer/Control"]
+visible = false
 margin_right = 260.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 260, 40 )
