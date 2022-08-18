@@ -48,6 +48,7 @@ func _input(event):
 func _on_TodoPopup_popup_hide():
 	todo.text = title_edit.text
 	todo.desc = desc.text
+	todo.todo_button.hint_tooltip = todo.desc
 	todo.checklist = []
 	for i in checklist_container.get_children():
 		var checkitems = []
