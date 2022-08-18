@@ -10,6 +10,7 @@ var hover := false
 var desc := ""
 var text := "" setget set_text
 var checklist := []
+onready var todoButton :Button = $Todo
 onready var title : Label = $Todo/Title
 onready var list : PanelContainer = get_node("../../../")
 onready var todot :Control = get_node("../../../../../../")
