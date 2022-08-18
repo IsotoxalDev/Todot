@@ -3,43 +3,36 @@
 [ext_resource path="res://addons/Todot/Src/Scripts/List.gd" type="Script" id=1]
 [ext_resource path="res://addons/Todot/Src/Scenes/ListTitle.tscn" type="PackedScene" id=2]
 
-[node name="List" type="PanelContainer" groups=[
-"List",
-]]
-margin_right = 14.0
-margin_bottom = 14.0
+[node name="List" type="PanelContainer" groups=["List"]]
+margin_right = 280.0
+margin_bottom = 90.0
 rect_min_size = Vector2( 280, 0 )
 size_flags_vertical = 0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBox" type="VBoxContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 273.0
+margin_right = 287.0
 margin_bottom = 83.0
 custom_constants/separation = 16
 
 [node name="ListTitle" parent="VBox" instance=ExtResource( 2 )]
-margin_right = 266.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 260, 40 )
 focus_mode = 0
 custom_constants/hseparation = 0
 enabled_focus_mode = 0
 
 [node name="VBox" type="VBoxContainer" parent="VBox"]
 margin_top = 56.0
-margin_right = 266.0
+margin_right = 280.0
 margin_bottom = 76.0
 size_flags_horizontal = 3
 custom_constants/separation = 5
 
-[node name="Button" type="Button" parent="VBox/VBox"]
-margin_right = 266.0
+[node name="Add" type="Button" parent="VBox/VBox"]
+margin_right = 280.0
 margin_bottom = 20.0
 text = "ADD"
 
-[connection signal="pressed" from="VBox/VBox/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBox/VBox/Add" to="." method="_on_Button_pressed"]

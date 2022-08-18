@@ -65,7 +65,7 @@ func _on_TodoPopup_popup_hide():
 			'checkitems': checkitems,
 		})
 	todot.save()
-	pass
+	todo = null
 
 
 func todo_pressed(todo : Todo):
