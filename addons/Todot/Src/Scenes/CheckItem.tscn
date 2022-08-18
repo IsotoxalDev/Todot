@@ -22,18 +22,20 @@ flat = true
 
 [node name="LineEdit" type="LineEdit" parent="."]
 margin_left = 28.0
-margin_right = 999.0
+margin_right = 995.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
+placeholder_text = "Enter Sub-Goals..."
 
 [node name="Remove" type="Button" parent="."]
-margin_left = 1003.0
+margin_left = 999.0
 margin_right = 1023.0
 margin_bottom = 24.0
-text = "X"
+rect_min_size = Vector2( 24, 24 )
+text = "x"
 
 [connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]
 [connection signal="pressed" from="Remove" to="." method="_on_Remove_pressed"]
