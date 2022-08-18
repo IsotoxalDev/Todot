@@ -4,11 +4,11 @@
 [ext_resource path="res://addons/Todot/Assets/Checklist.png" type="Texture" id=2]
 [ext_resource path="res://addons/Todot/Src/Scripts/Checklist.gd" type="Script" id=3]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0, 0, 0 )
-
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0 )
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.647059, 1, 0.32549, 1 )
@@ -35,9 +35,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TitleContainer" type="HBoxContainer" parent="."]
 margin_right = 1023.0
@@ -53,16 +50,22 @@ stretch_mode = 6
 
 [node name="TitleEdit" type="LineEdit" parent="TitleContainer"]
 margin_left = 29.0
-margin_right = 1023.0
+margin_right = 893.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
-custom_fonts/font = SubResource( 2 )
 placeholder_text = "Enter Goal..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Remove" type="Button" parent="TitleContainer"]
+margin_left = 897.0
+margin_right = 1023.0
+margin_bottom = 25.0
+text = "Remove Checklist"
 
 [node name="ProgressContainer" type="HBoxContainer" parent="."]
 margin_top = 35.0
@@ -94,7 +97,7 @@ margin_top = 59.0
 margin_right = 1023.0
 margin_bottom = 59.0
 
-[node name="Button" type="Button" parent="."]
+[node name="Add" type="Button" parent="."]
 margin_left = 491.0
 margin_top = 69.0
 margin_right = 532.0
@@ -102,4 +105,6 @@ margin_bottom = 89.0
 size_flags_horizontal = 4
 text = "ADD"
 
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="text_changed" from="TitleContainer/TitleEdit" to="." method="_on_TitleEdit_text_changed"]
+[connection signal="pressed" from="TitleContainer/Remove" to="." method="_on_Remove_pressed"]
+[connection signal="pressed" from="Add" to="." method="_on_Add_pressed"]
