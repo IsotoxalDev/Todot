@@ -13,10 +13,14 @@ func _ready():
 func _on_Button_pressed():
 	var _n = add_todo()
 	todot.save()
-	
+
 
 func add_todo():
 	var new_todo = todo.instance()
 	todo_container.add_child(new_todo)
 	todo_container.move_child(new_todo, todo_container.get_child_count()-2)
 	return new_todo
+
+func remove():
+	get_parent().remove_child(self)
+	queue_free()
