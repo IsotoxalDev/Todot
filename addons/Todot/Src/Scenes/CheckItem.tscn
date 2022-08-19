@@ -38,5 +38,5 @@ margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 text = "x"
 
-[connection signal="text_changed" from="title" to="." method="_on_LineEdit_text_changed"]
+[connection signal="text_changed" from="TitleEdit" to="." method="_on_TitleEdit_text_changed"]
 [connection signal="pressed" from="Remove" to="." method="_on_Remove_pressed"]

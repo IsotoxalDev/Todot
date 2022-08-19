@@ -4,6 +4,7 @@ extends HBoxContainer
 
 onready var title: LineEdit = $"%title"
 
+
 func _on_Remove_pressed() -> void:
 	queue_free()
 

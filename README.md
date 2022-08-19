@@ -7,9 +7,8 @@ Opening trello and going back and forth between it and godot is... not the most 
 
 What to expect
 --
-1. No way to remove a todo or list.
-2. You have to fix the font scaling issues your selves.
-3. has a lot of bugs.
+1. You have to fix the font scaling issues your selves.
+2. has a lot of bugs.
 
 How to install?
 --
