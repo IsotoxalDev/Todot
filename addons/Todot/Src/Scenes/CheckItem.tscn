@@ -20,7 +20,7 @@ margin_bottom = 24.0
 size_flags_horizontal = 0
 flat = true
 
-[node name="title" type="LineEdit" parent="."]
+[node name="TitleEdit" type="LineEdit" parent="."]
 unique_name_in_owner = true
 margin_left = 28.0
 margin_right = 995.0

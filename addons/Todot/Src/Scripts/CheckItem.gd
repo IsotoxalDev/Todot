@@ -4,12 +4,11 @@ extends HBoxContainer
 
 onready var title: LineEdit = $"%title"
 
-
 func _on_Remove_pressed() -> void:
 	queue_free()
 
 
-func _on_LineEdit_text_changed(new_text: String) -> void:
+func _on_TitleEdit_text_changed(new_text: String) -> void:
 	title.hint_tooltip = auto_nex_text(new_text)
 
 
