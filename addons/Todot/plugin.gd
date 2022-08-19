@@ -1,8 +1,8 @@
 tool
 extends EditorPlugin
 
-
 const todot : PackedScene = preload("res://addons/Todot/Todot.tscn")
+const todot_icon: Texture = preload("res://addons/Todot/TodotIcon.svg")
 
 var todot_instance
 
@@ -27,9 +27,7 @@ func make_visible(visible):
 		todot_instance.visible = visible
 
 
-func get_plugin_name():
-	return "Todot"
+func get_plugin_name(): return "Todot"
 
 
-func get_plugin_icon():
-	return get_editor_interface().get_base_control().get_icon("Node", "EditorIcons")
+func get_plugin_icon(): return todot_icon
