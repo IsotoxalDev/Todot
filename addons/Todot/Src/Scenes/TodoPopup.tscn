@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://addons/Todot/Src/Scripts/TodoPopup.gd" type="Script" id=2]
 [ext_resource path="res://addons/Todot/Assets/Todo.svg" type="Texture" id=3]
 [ext_resource path="res://addons/Todot/Assets/ChecklistFilled.svg" type="Texture" id=4]
 [ext_resource path="res://addons/Todot/Assets/Description.svg" type="Texture" id=5]
-[ext_resource path="res://addons/Todot/Assets/clock.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -44,7 +43,6 @@ use_filter = true
 font_data = ExtResource( 1 )
 
 [node name="TodoPopup" type="PopupDialog"]
-visible = true
 margin_right = 500.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 550, 500 )
@@ -227,19 +225,6 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 8 )
 text = "Checklist"
 icon = ExtResource( 4 )
-flat = true
-align = 0
-expand_icon = true
-
-[node name="DueDate" type="Button" parent="VBoxContainer/TasksArea/AddTaskArea/ScrollContainer/VBoxContainer"]
-visible = false
-margin_top = 59.0
-margin_right = 80.0
-margin_bottom = 86.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 8 )
-text = "Due Date"
-icon = ExtResource( 6 )
 flat = true
 align = 0
 expand_icon = true
