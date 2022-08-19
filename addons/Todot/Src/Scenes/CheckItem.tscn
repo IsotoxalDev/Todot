@@ -1,19 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=1]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
+[ext_resource path="res://addons/Todot/Src/Scripts/CheckItem.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
 
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
 [node name="CheckItem" type="HBoxContainer"]
 margin_right = 1023.0
 margin_bottom = 24.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource( 2 )
 
 [node name="CheckBox" type="CheckBox" parent="."]
 margin_right = 24.0
@@ -21,12 +20,23 @@ margin_bottom = 24.0
 size_flags_horizontal = 0
 flat = true
 
-[node name="LineEdit" type="LineEdit" parent="."]
+[node name="title" type="LineEdit" parent="."]
+unique_name_in_owner = true
 margin_left = 28.0
-margin_right = 1023.0
+margin_right = 995.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
-custom_fonts/font = SubResource( 2 )
 placeholder_text = "Enter Sub-Goals..."
+
+[node name="Remove" type="Button" parent="."]
+margin_left = 999.0
+margin_right = 1023.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+text = "x"
+
+[connection signal="text_changed" from="title" to="." method="_on_LineEdit_text_changed"]
+[connection signal="pressed" from="Remove" to="." method="_on_Remove_pressed"]

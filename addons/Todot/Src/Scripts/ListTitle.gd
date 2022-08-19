@@ -4,11 +4,11 @@ extends Button
 
 signal on_enter_pressed
 
-
 var hover := false
 var drag := false
-onready var title : Label = $HBoxContainer/Control/Title
-onready var title_edit : LineEdit = $HBoxContainer/Control/LineEdit
+onready var title: Label = $"%Title"
+onready var edit_box: HBoxContainer = $"%EditBox"
+onready var title_edit: LineEdit = $"%TitleEdit"
 onready var list : PanelContainer = get_node("../../")
 onready var todot : Control = get_node("../../../../../")
 
@@ -38,10 +38,10 @@ func _gui_input(event: InputEvent) -> void:
 				yield(get_tree().create_timer(0.2), "timeout")
 				if list.get_parent().name != "Mouse":
 					title.hide()
-					title_edit.show()
+					edit_box.show()
+					title_edit.grab_focus()
 					title_edit.editable = true
 					title_edit.select_all()
-					title_edit.grab_focus()
 
 
 func _input(event):
@@ -67,11 +67,15 @@ func _input(event):
 func reset():
 	if title != null:
 		title.show()
-		title_edit.hide()
+		edit_box.hide()
 		title_edit.editable = false
 		if title_edit.get_text():
 			title.set_text(title_edit.get_text())
 		else:
 			title.set_text(title_edit.placeholder_text)
-			
+
 		todot.save()
+
+
+func _on_Remove_pressed() -> void:
+	list.remove()

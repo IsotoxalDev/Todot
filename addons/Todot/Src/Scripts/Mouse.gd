@@ -38,7 +38,7 @@ func _input(event):
 func get_list_index(list : PanelContainer,scroll_hor :float):
 	var index = preview.get_index()
 	var dist = list.get_size().x+30
-	
+
 	while mousepos.x+scroll_hor >= dist*index:
 		index+=1
 
@@ -58,7 +58,7 @@ func get_todo_index(todo : Control,scroll_hor :float, scroll_ver :float):
 	var dist = Vector2()
 	dist.x = todo.list.get_size().x + 30
 	var title_size =  preview.get_node("../../ListTitle").get_size().y
-	
+
 	while mousepos.x+scroll_hor >= dist.x*todo_index.x:
 		todo_index.x += 1
 

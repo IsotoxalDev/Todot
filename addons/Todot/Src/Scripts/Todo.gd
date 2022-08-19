@@ -1,8 +1,6 @@
 tool
-extends Control
-
-
 class_name Todo
+extends Control
 
 
 var drag := false
@@ -10,7 +8,8 @@ var hover := false
 var desc := ""
 var text := "" setget set_text
 var checklist := []
-onready var title : Label = $Todo/Title
+onready var todo_button :Button = $Todo
+onready var title : Label = $Todo/HBoxContainer/Title
 onready var list : PanelContainer = get_node("../../../")
 onready var todot :Control = get_node("../../../../../../")
 
@@ -31,16 +30,25 @@ func _on_Todo_mouse_exited():
 	hover = false
 
 
+func _on_Remove_pressed() -> void:
+	remove()
+
+
 func set_text(val : String):
 	text = val
 	title.text = text
+
+
+func remove():
+	get_parent().remove_child(self)
+	queue_free()
 
 
 func _process(delta):
 	if title:
 		title.set_size(Vector2.ZERO)
 		rect_min_size.y = title.get_size().y+15
-		title.get_parent().rect_min_size.y = title.get_size().y+10
+		todo_button.rect_min_size.y = title.get_size().y+10
 
 
 func _input(event):
