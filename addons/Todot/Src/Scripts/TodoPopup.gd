@@ -57,7 +57,7 @@ func _on_TodoPopup_popup_hide():
 		var checkitems = []
 		for j in i.check_item_container.get_children():
 			checkitems.append({
-				'name': j.get_node("LineEdit").text,
+				'name': j.title.text,
 				'done': j.get_node("CheckBox").pressed
 			})
 		todo.checklist.append({
