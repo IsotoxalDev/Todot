@@ -32,13 +32,12 @@ __meta__ = {
 }
 
 [node name="ListContainer" type="HBoxContainer" parent="ListScrollContainer"]
-margin_right = 667.0
-margin_bottom = 186.0
+margin_right = 35.0
+margin_bottom = 56.0
 custom_constants/separation = 30
 
 [node name="Button" type="Button" parent="ListScrollContainer/ListContainer"]
-margin_left = 632.0
-margin_right = 667.0
+margin_right = 35.0
 margin_bottom = 56.0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 1 )
@@ -63,7 +62,6 @@ __meta__ = {
 }
 
 [node name="TodoPopup" parent="Dialouges" instance=ExtResource( 5 )]
-visible = false
 
 [node name="Mouse" type="Control" parent="."]
 anchor_right = 1.0
@@ -78,5 +76,5 @@ __meta__ = {
 
 [connection signal="pressed" from="ListScrollContainer/ListContainer/Button" to="ListScrollContainer/ListContainer/Button" method="add_list"]
 [connection signal="about_to_show" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="show"]
-[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/TodoPopup" method="_on_TodoPopup_popup_hide"]
 [connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="hide"]
+[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/TodoPopup" method="_on_TodoPopup_popup_hide"]
