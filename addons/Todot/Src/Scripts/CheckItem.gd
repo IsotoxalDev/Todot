@@ -2,7 +2,7 @@ tool
 extends HBoxContainer
 
 
-onready var title: LineEdit = $"%title"
+onready var title: LineEdit = $"%TitleEdit"
 
 func _on_Remove_pressed() -> void:
 	queue_free()
