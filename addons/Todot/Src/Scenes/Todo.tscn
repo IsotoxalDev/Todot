@@ -47,8 +47,6 @@ margin_left = 261.0
 margin_right = 280.0
 margin_bottom = 45.0
 text = "x"
+flat = true
 
-[connection signal="button_down" from="Todo" to="." method="_on_Todo_button_down"]
-[connection signal="mouse_entered" from="Todo" to="." method="_on_Todo_mouse_entered"]
-[connection signal="mouse_exited" from="Todo" to="." method="_on_Todo_mouse_exited"]
 [connection signal="pressed" from="Todo/HBoxContainer/Remove" to="." method="_on_Remove_pressed"]

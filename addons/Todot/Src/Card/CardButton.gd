@@ -1,0 +1,61 @@
+tool
+extends Button
+
+signal drag_start(data)
+signal drag_end()
+
+var data: Card setget set_data
+export var margin: int = 20
+
+onready var title: Label = $"%Title"
+onready var edit_button = $"%EditButton"
+
+func data_changed(data):
+	title.text = data.name
+	hint_tooltip = data.description
+
+func set_data(val: Card):
+	data = val
+	val.connect("changed", self, "data_changed")
+	title.text = val.name
+
+func fix_size():
+	if !title: return
+	rect_min_size.y = title.rect_size.y + margin
+
+func _input(event):
+	if !event is InputEventMouseMotion: return
+	var rect = get_rect()
+	rect.position = Vector2.ZERO
+	if rect.has_point(get_local_mouse_position()):
+		edit_button.modulate = Color.white
+	else: edit_button.modulate = Color.transparent
+
+func _on_EditButton_pressed():
+	pass
+
+func get_drag_data(position):
+	var data = {}
+	data["Item"] = self
+	var idx = data["Item"].get_index()
+	var preview = TextureRect.new()
+	var img = get_viewport().get_texture().get_data()
+	img.flip_y()
+	var t = ImageTexture.new()
+	t.create_from_image(img.get_rect(data["Item"].get_global_rect()))
+	preview.texture = t
+	preview.rect_size = data["Item"].rect_size
+	var c = Control.new()
+	c.add_child(preview)
+	preview.set_position(-get_local_mouse_position())
+	set_drag_preview(c)
+	
+	data["Preview"] = ColorRect.new()
+	data["Preview"].color = Color(0, 0, 0, 0.5)
+	data["Preview"].rect_min_size = data["Item"].rect_size
+	data["Item"].get_parent().add_child(data["Preview"])
+	data["Item"].get_parent().remove_child(data["Item"])
+	data["Preview"].get_parent().move_child(data["Preview"], idx)
+	emit_signal("drag_start", data)
+	c.connect("tree_exiting", self, "emit_signal", ["drag_end"])
+	return data

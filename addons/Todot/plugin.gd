@@ -2,7 +2,7 @@ tool
 extends EditorPlugin
 
 const todot : PackedScene = preload("res://addons/Todot/Todot.tscn")
-const todot_icon: Texture = preload("res://addons/Todot/TodotIcon.svg")
+const todot_icon: Texture = preload("res://addons/Todot/Assets/TodotIcon.svg")
 
 var todot_instance
 

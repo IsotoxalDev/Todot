@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://addons/Todot/Src/Scripts/TodoPopup.gd" type="Script" id=2]
+[ext_resource path="res://addons/Todot/Src/Card/CardDetails.gd" type="Script" id=2]
 [ext_resource path="res://addons/Todot/Assets/Todo.svg" type="Texture" id=3]
 [ext_resource path="res://addons/Todot/Assets/ChecklistFilled.svg" type="Texture" id=4]
 [ext_resource path="res://addons/Todot/Assets/Description.svg" type="Texture" id=5]

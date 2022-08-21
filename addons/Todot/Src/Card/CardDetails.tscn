@@ -1,0 +1,250 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://addons/Todot/Src/Card/CardDetails.gd" type="Script" id=1]
+[ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://addons/Todot/Assets/ChecklistFilled.svg" type="Texture" id=3]
+[ext_resource path="res://addons/Todot/Assets/Todo.svg" type="Texture" id=4]
+[ext_resource path="res://addons/Todot/Assets/Description.svg" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 25
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.0431373, 0.0431373, 0.0431373, 0.223529 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 3
+border_width_bottom = 3
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="DynamicFont" id=5]
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 17
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="CardDetails" type="PopupDialog"]
+margin_right = 500.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 550, 500 )
+script = ExtResource( 1 )
+x_width = 15
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+custom_constants/separation = 20
+
+[node name="TitleArea" type="HBoxContainer" parent="VBox"]
+margin_right = 530.0
+margin_bottom = 40.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="VBox/TitleArea"]
+margin_right = 31.248
+margin_bottom = 40.0
+rect_min_size = Vector2( 31.248, 40 )
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="VBox/TitleArea"]
+margin_left = 41.0
+margin_right = 501.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 460, 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="VBox/TitleArea/Control"]
+unique_name_in_owner = true
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 465.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "taerisntearst"
+clip_text = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBox/TitleArea/Control"]
+margin_top = 5.0
+margin_right = 420.0
+margin_bottom = 36.0
+alignment = 1
+
+[node name="TitleEdit" type="LineEdit" parent="VBox/TitleArea/Control/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+margin_right = 460.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 460, 0 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/read_only = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 2 )
+placeholder_text = "Enter Title..."
+
+[node name="DescriptionArea" type="HBoxContainer" parent="VBox"]
+margin_top = 60.0
+margin_right = 530.0
+margin_bottom = 183.0
+custom_constants/separation = 10
+
+[node name="DescriptionIcon" type="TextureRect" parent="VBox/DescriptionArea"]
+margin_right = 32.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 32, 40 )
+size_flags_vertical = 0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBox/DescriptionArea"]
+margin_left = 42.0
+margin_right = 530.0
+margin_bottom = 123.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DescriptionLabel" type="Label" parent="VBox/DescriptionArea/VBoxContainer"]
+margin_right = 488.0
+margin_bottom = 19.0
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 5 )
+text = "Description"
+valign = 1
+
+[node name="Description" type="TextEdit" parent="VBox/DescriptionArea/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 23.0
+margin_right = 488.0
+margin_bottom = 123.0
+rect_min_size = Vector2( 0, 100 )
+hint_tooltip = "Description"
+wrap_enabled = true
+
+[node name="TasksArea" type="HBoxContainer" parent="VBox"]
+margin_top = 203.0
+margin_right = 530.0
+margin_bottom = 480.0
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="ChecklistArea" type="Panel" parent="VBox/TasksArea"]
+self_modulate = Color( 1, 1, 1, 0.34902 )
+margin_right = 350.0
+margin_bottom = 277.0
+rect_min_size = Vector2( 350, 0 )
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBox/TasksArea/ChecklistArea"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ChecklistContainer" type="VBoxContainer" parent="VBox/TasksArea/ChecklistArea/ScrollContainer"]
+unique_name_in_owner = true
+margin_right = 350.0
+size_flags_horizontal = 3
+
+[node name="AddTaskArea" type="Panel" parent="VBox/TasksArea"]
+self_modulate = Color( 1, 1, 1, 0.34902 )
+margin_left = 370.0
+margin_right = 530.0
+margin_bottom = 277.0
+mouse_filter = 1
+size_flags_horizontal = 3
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBox/TasksArea/AddTaskArea"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBox/TasksArea/AddTaskArea/ScrollContainer"]
+margin_right = 160.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBox/TasksArea/AddTaskArea/ScrollContainer/VBoxContainer"]
+margin_right = 160.0
+margin_bottom = 24.0
+custom_colors/font_color = Color( 0.698039, 0.698039, 0.698039, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Add:"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBox/TasksArea/AddTaskArea/ScrollContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 160.0
+margin_bottom = 32.0
+
+[node name="Checklist" type="Button" parent="VBox/TasksArea/AddTaskArea/ScrollContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 160.0
+margin_bottom = 63.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "Checklist"
+icon = ExtResource( 3 )
+flat = true
+align = 0
+expand_icon = true
+
+[node name="CloseButton" type="Button" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.995
+anchor_top = 0.008
+anchor_right = 0.995
+anchor_bottom = 0.008
+margin_left = -25.2501
+margin_top = 13.0
+margin_right = -5.25006
+margin_bottom = 33.0
+rect_min_size = Vector2( 20, 20 )
+focus_mode = 0
+enabled_focus_mode = 0
+flat = true
+
+[connection signal="mouse_entered" from="VBox/TitleArea/Control" to="." method="_on_Control_mouse_entered"]
+[connection signal="mouse_exited" from="VBox/TitleArea/Control" to="." method="_on_Control_mouse_exited"]
+[connection signal="pressed" from="VBox/TasksArea/AddTaskArea/ScrollContainer/VBoxContainer/Checklist" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]

@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/Todot/Todot.tres" type="Theme" id=1]
-[ext_resource path="res://addons/Todot/Src/Scripts/Mouse.gd" type="Script" id=3]
+[ext_resource path="res://addons/Todot/Src/Card/CardDetails.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/Todot/Todot.gd" type="Script" id=4]
-[ext_resource path="res://addons/Todot/Src/Scenes/TodoPopup.tscn" type="PackedScene" id=5]
-[ext_resource path="res://addons/Todot/Src/Scripts/AddListButton.gd" type="Script" id=6]
 [ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="DynamicFont" id=1]
@@ -18,20 +16,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ListScrollContainer" type="ScrollContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
-follow_focus = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ListContainer" type="HBoxContainer" parent="ListScrollContainer"]
+unique_name_in_owner = true
 margin_right = 35.0
 margin_bottom = 56.0
 custom_constants/separation = 30
@@ -42,7 +34,6 @@ margin_bottom = 56.0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 1 )
 text = "+"
-script = ExtResource( 6 )
 
 [node name="Dialouges" type="Control" parent="."]
 anchor_right = 1.0
@@ -61,20 +52,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TodoPopup" parent="Dialouges" instance=ExtResource( 5 )]
+[node name="CardDetails" parent="Dialouges" instance=ExtResource( 2 )]
+unique_name_in_owner = true
 
-[node name="Mouse" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[connection signal="pressed" from="ListScrollContainer/ListContainer/Button" to="ListScrollContainer/ListContainer/Button" method="add_list"]
-[connection signal="about_to_show" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="show"]
-[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="hide"]
-[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/TodoPopup" method="_on_TodoPopup_popup_hide"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Button" to="." method="add_list"]
+[connection signal="about_to_show" from="Dialouges/CardDetails" to="Dialouges/DialogueBackground" method="show"]
+[connection signal="popup_hide" from="Dialouges/CardDetails" to="Dialouges/DialogueBackground" method="hide"]
+[connection signal="popup_hide" from="Dialouges/CardDetails" to="Dialouges/CardDetails" method="_on_CardDetails_popup_hide"]
