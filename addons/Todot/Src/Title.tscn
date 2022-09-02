@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://addons/Todot/Src/Title.gd" type="Script" id=1]
 [ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=2]
@@ -20,6 +20,14 @@ size = 18
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends LineEdit
+
+func _input(event):
+	if has_focus(): return
+	if event is InputEventMouseButton && event.is_pressed():
+"
 
 [node name="ListTitle" type="Button"]
 margin_right = 280.0
@@ -44,7 +52,7 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="VBox" type="VBoxContainer" parent="HBox"]
-margin_right = 280.0
+margin_right = 252.0
 margin_bottom = 55.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -53,7 +61,7 @@ alignment = 1
 
 [node name="Title" type="Label" parent="HBox/VBox"]
 unique_name_in_owner = true
-margin_right = 280.0
+margin_right = 252.0
 margin_bottom = 55.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
@@ -63,20 +71,24 @@ autowrap = true
 [node name="TitleEdit" type="LineEdit" parent="HBox/VBox"]
 unique_name_in_owner = true
 visible = false
-margin_top = 26.0
-margin_right = 268.0
-margin_bottom = 48.0
+margin_top = 33.0
+margin_right = 252.0
+margin_bottom = 55.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 placeholder_text = "Enter Title"
+script = SubResource( 7 )
 
-[node name="MenuButton" type="TextureButton" parent="HBox"]
-unique_name_in_owner = true
-visible = false
+[node name="VBoxContainer" type="VBoxContainer" parent="HBox"]
 margin_left = 256.0
 margin_right = 280.0
 margin_bottom = 55.0
+
+[node name="MenuButton" type="TextureButton" parent="HBox/VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 24.0
+margin_bottom = 24.0
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 3 )
 

@@ -9,6 +9,9 @@ var editor: Control
 var list_panel: StyleBox
 var list_scene : PackedScene = preload("res://addons/Todot/Src/List/List.tscn")
 onready var card_details: Popup = $"%CardDetails"
+onready var add_title_edit: LineEdit = $"%AddTitleEdit"
+onready var add_button: Button = $"%AddButton"
+onready var add_panel: PanelContainer = $"%Panel"
 onready var dialogues: Control = $Dialouges
 onready var list_scroll: ScrollContainer = $ListScrollContainer
 onready var list_container: HBoxContainer = $"%ListContainer"
@@ -82,6 +85,10 @@ func clear_data():
 	drag_data = null
 
 func _input(event):
+	if event is InputEventMouseButton && add_title_edit.has_focus():
+		if !add_title_edit.get_global_rect().has_point(get_global_mouse_position()):
+			add_button.show()
+			add_panel.hide()
 	if !event is InputEventMouseMotion:return
 	if !drag_data: return
 	var mouse_pos = get_local_mouse_position()
@@ -109,6 +116,7 @@ func _input(event):
 			drag_data["List"] = list
 
 func add_list(title = ""):
+	if title == "": return
 	var list = list_scene.instance()
 	list.plugin_rect = get_rect()
 	list.add_stylebox_override("panel", list_panel)
@@ -124,5 +132,7 @@ func add_list(title = ""):
 	list.title.title.text = title
 	list.title.title_edit.text = title
 
-
-#func _on_CardDetails_ready():
+func add_list_button_pressed(_n = ""):
+	if add_title_edit.text != "":
+		add_list(add_title_edit.text)
+		add_title_edit.text = ""
