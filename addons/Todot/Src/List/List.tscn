@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/Todot/Src/List/List.gd" type="Script" id=1]
-[ext_resource path="res://addons/Todot/Src/List/ListTitle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/Todot/Src/Title.tscn" type="PackedScene" id=2]
 
 [node name="List" type="PanelContainer" groups=["List"]]
 margin_right = 280.0
@@ -14,31 +14,35 @@ script = ExtResource( 1 )
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 287.0
-margin_bottom = 83.0
-custom_constants/separation = 16
+margin_bottom = 92.0
+custom_constants/separation = 5
 
 [node name="ListTitle" parent="VBox" instance=ExtResource( 2 )]
 unique_name_in_owner = true
-margin_bottom = 22.0
-rect_min_size = Vector2( 280, 22 )
 focus_mode = 0
 custom_constants/hseparation = 0
 enabled_focus_mode = 0
 list = NodePath("../..")
 
-[node name="CardContainer" type="VBoxContainer" parent="VBox"]
+[node name="CardScroll" type="ScrollContainer" parent="VBox"]
 unique_name_in_owner = true
-margin_top = 38.0
+margin_top = 60.0
 margin_right = 280.0
-margin_bottom = 38.0
+margin_bottom = 60.0
+size_flags_vertical = 3
+
+[node name="CardContainer" type="VBoxContainer" parent="VBox/CardScroll"]
+unique_name_in_owner = true
+margin_right = 280.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 custom_constants/separation = 5
 
 [node name="Add" type="Button" parent="VBox"]
-margin_top = 54.0
+margin_top = 65.0
 margin_right = 280.0
-margin_bottom = 74.0
+margin_bottom = 85.0
 text = "ADD"
 
+[connection signal="minimum_size_changed" from="VBox/CardScroll/CardContainer" to="." method="fix_size"]
 [connection signal="pressed" from="VBox/Add" to="." method="_on_Button_pressed"]

@@ -7,31 +7,28 @@ onready var percent_label = $ProgressContainer/PercentLabel
 onready var title = $TitleContainer/TitleEdit
 var check_item = preload("res://addons/Todot/Src/Scenes/CheckItem.tscn")
 
-
 func remove():
 	queue_free()
 
-
-func auto_nex_text(text :String, max_spaces_in_line: int = 8):
-	# Algorithm that adds new line after a given number of words
-	var space_count = 0
-	var from = 0
-	while text.findn(" ", from) != -1:
-		var space = text.findn(" ", from)
-		space_count += 1
-		from = space + 1
-		if space_count == max_spaces_in_line:
-			text[space] = "\n"
-			space_count = 0
-	return text
-
+#func auto_nex_text(text :String, max_spaces_in_line: int = 8):
+#	# Algorithm that adds new line after a given number of words
+#	var space_count = 0
+#	var from = 0
+#	while text.findn(" ", from) != -1:
+#		var space = text.findn(" ", from)
+#		space_count += 1
+#		from = space + 1
+#		if space_count == max_spaces_in_line:
+#			text[space] = "\n"
+#			space_count = 0
+#	return text
 
 func _on_Add_pressed():
 	check_item_container.add_child(check_item.instance())
 
 
-func _on_TitleEdit_text_changed(new_text: String) -> void:
-	title.hint_tooltip = auto_nex_text(new_text)
+#func _on_TitleEdit_text_changed(new_text: String) -> void:
+#	title.hint_tooltip = auto_nex_text(new_text)
 
 
 func _add_check_item(text: String, done: bool):

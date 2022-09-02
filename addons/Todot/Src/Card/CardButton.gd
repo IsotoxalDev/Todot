@@ -19,10 +19,12 @@ func set_data(val: Card):
 	val.connect("changed", self, "data_changed")
 	title.text = val.name
 
+# The size need to be fixed according to the title's size
 func fix_size():
 	if !title: return
 	rect_min_size.y = title.rect_size.y + margin
 
+# Hacky hidden edit button
 func _input(event):
 	if !event is InputEventMouseMotion: return
 	var rect = get_rect()
@@ -34,6 +36,7 @@ func _input(event):
 func _on_EditButton_pressed():
 	pass
 
+# Drag stuff
 func get_drag_data(position):
 	var data = {}
 	data["Item"] = self

@@ -1,23 +1,37 @@
 tool
 extends Control
 
-
-var list_scene : PackedScene = preload("res://addons/Todot/Src/List/List.tscn")
+signal fix_list_theme()
 
 var on := false
 var drag_data = {}
+var editor: Control
 var list_panel: StyleBox
-#onready var mouse : Control = $Mouse
+var list_scene : PackedScene = preload("res://addons/Todot/Src/List/List.tscn")
 onready var card_details: Popup = $"%CardDetails"
 onready var dialogues: Control = $Dialouges
 onready var list_scroll: ScrollContainer = $ListScrollContainer
 onready var list_container: HBoxContainer = $"%ListContainer"
 
-func _ready():
-	list_panel = get_theme().get_stylebox("read_only", "LineEdit")
-#	load_data()
+func fix_theme():
+	theme = null
+	if list_panel == editor.get_theme().get_stylebox("read_only", "LineEdit"): return
+	list_panel = editor.get_theme().get_stylebox("read_only", "LineEdit")
+	emit_signal("fix_list_theme")
+	var panel = editor.get_theme().get_stylebox("panel", "WindowDialog")
+	panel.border_width_top = 1
+	card_details.add_stylebox_override("panel", panel)
 
-#func save():
+func _notification(what):
+	match what:
+		NOTIFICATION_THEME_CHANGED:
+			fix_theme()
+
+func _ready():
+	fix_theme()
+
+func save():
+	pass
 #	var data = []
 #	for i in list_container.get_children():
 #		if i is Button: continue
@@ -89,14 +103,18 @@ func _input(event):
 			var title = list.title.rect_size.y
 			var card_size = drag_data["Preview"].rect_size.y + list.card_container.get_constant("separation")
 			var cards_count = list.card_container.get_child_count()
-			var yindex = floor((mouse_pos.y+scroll_vertical+title)/card_size)-1
+			var yindex = floor((mouse_pos.y+scroll_vertical+title)/card_size)-2
 			yindex = 0 if yindex < 0 else yindex if yindex < cards_count else cards_count
 			list.card_container.move_child(drag_data["Preview"], yindex)
 			drag_data["List"] = list
 
 func add_list(title = ""):
 	var list = list_scene.instance()
-	list.panel = list_panel
+	list.plugin_rect = get_rect()
+	list.add_stylebox_override("panel", list_panel)
+	connect("fix_list_theme", list, "fix_theme", [self])
+	connect("resized", list, "set_plugin_rect", [self])
+	connect("resized", list, "fix_size")
 	list.connect("drag_start", self, "set_data")
 	list.connect("drag_end", self, "clear_data")
 	list.connect("on_edit", self, "save")
@@ -105,3 +123,6 @@ func add_list(title = ""):
 	list_container.move_child(list, list_container.get_child_count()-2)
 	list.title.title.text = title
 	list.title.title_edit.text = title
+
+
+#func _on_CardDetails_ready():
