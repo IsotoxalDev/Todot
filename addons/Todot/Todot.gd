@@ -3,7 +3,6 @@ extends Control
 
 signal fix_list_theme()
 
-var on := false
 var drag_data = {}
 var editor: Control
 var list_panel: StyleBox
@@ -11,18 +10,21 @@ var list_scene : PackedScene = preload("res://addons/Todot/Src/List/List.tscn")
 onready var card_details: Popup = $"%CardDetails"
 onready var add_title_edit: LineEdit = $"%AddTitleEdit"
 onready var add_button: Button = $"%AddButton"
-onready var add_panel: PanelContainer = $"%Panel"
+onready var add_panel: PanelContainer = $"%AddPanel"
 onready var dialogues: Control = $Dialouges
 onready var list_scroll: ScrollContainer = $ListScrollContainer
 onready var list_container: HBoxContainer = $"%ListContainer"
 
 func fix_theme():
-	theme = null
+	if editor:
+		if editor != self: theme = null
+	else: editor = self
 	if list_panel == editor.get_theme().get_stylebox("read_only", "LineEdit"): return
 	list_panel = editor.get_theme().get_stylebox("read_only", "LineEdit")
 	emit_signal("fix_list_theme")
 	var panel = editor.get_theme().get_stylebox("panel", "WindowDialog")
 	panel.border_width_top = 1
+	add_panel.add_stylebox_override("panel", list_panel)
 	card_details.add_stylebox_override("panel", panel)
 
 func _notification(what):
@@ -85,10 +87,11 @@ func clear_data():
 	drag_data = null
 
 func _input(event):
-	if event is InputEventMouseButton && add_title_edit.has_focus():
-		if !add_title_edit.get_global_rect().has_point(get_global_mouse_position()):
-			add_button.show()
-			add_panel.hide()
+	if event is InputEventMouseButton && add_title_edit && add_title_edit.has_focus():
+		if list_container.get_child_count() > 1:
+			if !add_title_edit.get_global_rect().has_point(get_global_mouse_position()):
+				add_button.show()
+				add_panel.hide()
 	if !event is InputEventMouseMotion:return
 	if !drag_data: return
 	var mouse_pos = get_local_mouse_position()
@@ -135,4 +138,4 @@ func add_list(title = ""):
 func add_list_button_pressed(_n = ""):
 	if add_title_edit.text != "":
 		add_list(add_title_edit.text)
-		add_title_edit.text = ""
+		add_title_edit.select_all()

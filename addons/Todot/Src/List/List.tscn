@@ -14,7 +14,7 @@ script = ExtResource( 1 )
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 287.0
-margin_bottom = 92.0
+margin_bottom = 102.0
 custom_constants/separation = 5
 
 [node name="ListTitle" parent="VBox" instance=ExtResource( 2 )]
@@ -38,11 +38,39 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 custom_constants/separation = 5
 
-[node name="Add" type="Button" parent="VBox"]
+[node name="AddButton" type="Button" parent="VBox"]
+unique_name_in_owner = true
 margin_top = 65.0
 margin_right = 280.0
-margin_bottom = 85.0
-text = "ADD"
+margin_bottom = 95.0
+rect_min_size = Vector2( 0, 30 )
+text = "+ Add Card"
+
+[node name="AddCardBox" type="HBoxContainer" parent="VBox"]
+unique_name_in_owner = true
+visible = false
+margin_top = 100.0
+margin_right = 280.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="AddCardEdit" type="LineEdit" parent="VBox/AddCardBox"]
+unique_name_in_owner = true
+margin_right = 239.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+placeholder_text = "Enter a title for this card"
+
+[node name="AddCardButton" type="Button" parent="VBox/AddCardBox"]
+margin_left = 243.0
+margin_right = 280.0
+margin_bottom = 30.0
+text = "Add"
 
 [connection signal="minimum_size_changed" from="VBox/CardScroll/CardContainer" to="." method="fix_size"]
-[connection signal="pressed" from="VBox/Add" to="." method="_on_Button_pressed"]
+[connection signal="button_up" from="VBox/AddButton" to="VBox/AddCardBox/AddCardEdit" method="set_text" binds= [ "" ]]
+[connection signal="pressed" from="VBox/AddButton" to="VBox/AddButton" method="hide"]
+[connection signal="pressed" from="VBox/AddButton" to="VBox/AddCardBox" method="show"]
+[connection signal="pressed" from="VBox/AddButton" to="VBox/AddCardBox/AddCardEdit" method="grab_focus"]
+[connection signal="text_entered" from="VBox/AddCardBox/AddCardEdit" to="." method="add_card_button_pressed"]
+[connection signal="pressed" from="VBox/AddCardBox/AddCardButton" to="." method="add_card_button_pressed"]

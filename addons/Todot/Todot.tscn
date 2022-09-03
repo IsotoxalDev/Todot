@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://addons/Todot/Todot.tres" type="Theme" id=1]
 [ext_resource path="res://addons/Todot/Src/Card/CardDetails.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/Todot/Todot.gd" type="Script" id=4]
 
@@ -23,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 1 )
 script = ExtResource( 4 )
 
 [node name="ListScrollContainer" type="ScrollContainer" parent="."]
@@ -33,17 +35,18 @@ scroll_vertical_enabled = false
 
 [node name="ListContainer" type="HBoxContainer" parent="ListScrollContainer"]
 unique_name_in_owner = true
-margin_right = 280.0
+margin_right = 276.0
 margin_bottom = 600.0
 size_flags_vertical = 3
 custom_constants/separation = 30
 
 [node name="Add" type="VBoxContainer" parent="ListScrollContainer/ListContainer"]
-margin_right = 280.0
+margin_right = 276.0
 margin_bottom = 600.0
 
 [node name="AddButton" type="Button" parent="ListScrollContainer/ListContainer/Add"]
 unique_name_in_owner = true
+visible = false
 margin_right = 280.0
 margin_bottom = 55.0
 rect_min_size = Vector2( 280, 55 )
@@ -51,44 +54,42 @@ size_flags_vertical = 0
 text = "+ add another list"
 align = 0
 
-[node name="Panel" type="PanelContainer" parent="ListScrollContainer/ListContainer/Add"]
+[node name="AddPanel" type="PanelContainer" parent="ListScrollContainer/ListContainer/Add"]
 unique_name_in_owner = true
-visible = false
-margin_top = 59.0
-margin_right = 294.0
-margin_bottom = 169.0
-rect_min_size = Vector2( 280, 110 )
+margin_right = 276.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
 
-[node name="VBox" type="VBoxContainer" parent="ListScrollContainer/ListContainer/Add/Panel"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 287.0
-margin_bottom = 103.0
+[node name="VBox" type="VBoxContainer" parent="ListScrollContainer/ListContainer/Add/AddPanel"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 270.0
+margin_bottom = 96.0
 
-[node name="AddTitleEdit" type="LineEdit" parent="ListScrollContainer/ListContainer/Add/Panel/VBox"]
+[node name="AddTitleEdit" type="LineEdit" parent="ListScrollContainer/ListContainer/Add/AddPanel/VBox"]
 unique_name_in_owner = true
-margin_right = 280.0
+margin_right = 264.0
 margin_bottom = 55.0
-rect_min_size = Vector2( 280, 55 )
+rect_min_size = Vector2( 264, 55 )
 placeholder_text = "Enter list title..."
 
-[node name="HBox" type="HBoxContainer" parent="ListScrollContainer/ListContainer/Add/Panel/VBox"]
+[node name="HBox" type="HBoxContainer" parent="ListScrollContainer/ListContainer/Add/AddPanel/VBox"]
 margin_top = 59.0
-margin_right = 280.0
-margin_bottom = 96.0
+margin_right = 264.0
+margin_bottom = 92.0
 size_flags_vertical = 3
 
-[node name="AddList" type="Button" parent="ListScrollContainer/ListContainer/Add/Panel/VBox/HBox"]
+[node name="AddList" type="Button" parent="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox"]
 margin_right = 61.0
-margin_bottom = 37.0
+margin_bottom = 33.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Add list"
 
-[node name="Cancel" type="Button" parent="ListScrollContainer/ListContainer/Add/Panel/VBox/HBox"]
+[node name="Cancel" type="Button" parent="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox"]
 margin_left = 65.0
 margin_right = 85.0
-margin_bottom = 37.0
+margin_bottom = 33.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "X"
@@ -113,13 +114,13 @@ unique_name_in_owner = true
 custom_styles/panel = SubResource( 4976 )
 
 [connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddButton" to="ListScrollContainer/ListContainer/Add/AddButton" method="hide"]
-[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddButton" to="ListScrollContainer/ListContainer/Add/Panel" method="show"]
-[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddButton" to="ListScrollContainer/ListContainer/Add/Panel/VBox/AddTitleEdit" method="grab_focus"]
-[connection signal="text_entered" from="ListScrollContainer/ListContainer/Add/Panel/VBox/AddTitleEdit" to="." method="add_list_button_pressed"]
-[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/Panel/VBox/HBox/AddList" to="." method="add_list_button_pressed"]
-[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/Panel/VBox/HBox/Cancel" to="ListScrollContainer/ListContainer/Add/AddButton" method="show"]
-[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/Panel/VBox/HBox/Cancel" to="ListScrollContainer/ListContainer/Add/Panel" method="hide"]
-[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/Panel/VBox/HBox/Cancel" to="ListScrollContainer/ListContainer/Add/Panel/VBox/AddTitleEdit" method="set_text" binds= [ "" ]]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddButton" to="ListScrollContainer/ListContainer/Add/AddPanel" method="show"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddButton" to="ListScrollContainer/ListContainer/Add/AddPanel/VBox/AddTitleEdit" method="grab_focus"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddButton" to="ListScrollContainer/ListContainer/Add/AddPanel/VBox/AddTitleEdit" method="set_text" binds= [ "" ]]
+[connection signal="text_entered" from="ListScrollContainer/ListContainer/Add/AddPanel/VBox/AddTitleEdit" to="." method="add_list_button_pressed"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox/AddList" to="." method="add_list_button_pressed"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox/Cancel" to="ListScrollContainer/ListContainer/Add/AddButton" method="show"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox/Cancel" to="ListScrollContainer/ListContainer/Add/AddPanel" method="hide"]
 [connection signal="about_to_show" from="Dialouges/CardDetails" to="Dialouges/DialogueBackground" method="show"]
 [connection signal="popup_hide" from="Dialouges/CardDetails" to="Dialouges/DialogueBackground" method="hide"]
 [connection signal="popup_hide" from="Dialouges/CardDetails" to="Dialouges/CardDetails" method="_on_CardDetails_popup_hide"]
