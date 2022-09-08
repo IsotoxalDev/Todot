@@ -4,18 +4,23 @@ extends Button
 signal on_edit()
 signal drag_start(data)
 signal drag_end()
+signal menu_pressed(rect)
 
 var drag_data = {}
-export var list: NodePath
+export var drag_item: NodePath
+export var menu: bool
+export var drag_x: bool = true
+export var drag_y: bool = true
 
 onready var title: Label = $"%Title"
+onready var menu_button = $"%MenuButton"
 onready var title_edit: LineEdit = $"%TitleEdit"
 
 # If the Item has no text give it the placeholder text
 func _ready() -> void:
-	if list: $"%MenuButton".show()
+	if menu: $"%MenuButton".show()
 	if !title.text: return
-	get_node(list).rect_rotation = 5
+	get_node(drag_item).rect_rotation = 5
 	title.text = title_edit.placeholder_text
 	title_edit.text = title_edit.placeholder_text
 
@@ -23,6 +28,7 @@ func _ready() -> void:
 func _pressed() -> void:
 	title.hide()
 	title_edit.show()
+	title_edit.text = title.text
 	title_edit.grab_focus()
 	title_edit.select_all()
 
@@ -39,8 +45,9 @@ func _on_TitleEdit_text_entered(new_text) -> void: reset()
 func reset() -> void:
 	title.show()
 	title_edit.hide()
-	if title_edit.text != "":
+	if title_edit.text.strip_edges() != "":
 		title.text = title_edit.text
+		set_tooltip(title_edit.text)
 		emit_signal("on_edit")
 	else:
 		title_edit.text = title.text
@@ -49,10 +56,16 @@ func reset() -> void:
 func fix_size():
 	rect_min_size.y = title.rect_size.y
 
+func preview_control(item: Control, x: bool, y: bool, position):
+	if !x:
+		item.rect_position.x = position.x
+	if !y:
+		item.rect_position.y = position.y
+
 func get_drag_data(position) -> Dictionary:
-	if !list: return {}
+	if !drag_item: return {}
 	var data = {}
-	data["Item"] = get_node(list)
+	data["Item"] = get_node(drag_item)
 	var idx = data["Item"].get_index()
 	var preview = TextureRect.new()
 	var img = get_viewport().get_texture().get_data()
@@ -63,8 +76,16 @@ func get_drag_data(position) -> Dictionary:
 	preview.rect_size = data["Item"].rect_size
 	var c = Control.new()
 	c.add_child(preview)
-	preview.set_position(-get_local_mouse_position())
+	var pos = get_local_mouse_position()
+	if drag_x:
+		preview.rect_position.x = -pos.x
+	if drag_y:
+		preview.rect_position.y = -pos.y
+#	c.set_position(pos)
 	set_drag_preview(c)
+	c.connect("item_rect_changed", self, "preview_control", [c,
+		drag_x, drag_y, data["Item"].rect_global_position])
+#	drag_preview(c, drag_x, drag_y)
 	
 	data["Preview"] = ColorRect.new()
 	data["Preview"].color = Color(0, 0, 0, 0.5)
@@ -77,3 +98,5 @@ func get_drag_data(position) -> Dictionary:
 	c.connect("tree_exiting", self, "emit_signal", ["drag_end"])
 	return data
 
+func _on_MenuButton_pressed():
+	emit_signal("menu_pressed",  menu_button.get_global_rect())

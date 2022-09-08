@@ -3,6 +3,7 @@ extends Control
 
 signal fix_list_theme()
 
+var list_data = {}
 var drag_data = {}
 var editor: Control
 var list_panel: StyleBox
@@ -11,7 +12,7 @@ onready var card_details: Popup = $"%CardDetails"
 onready var add_title_edit: LineEdit = $"%AddTitleEdit"
 onready var add_button: Button = $"%AddButton"
 onready var add_panel: PanelContainer = $"%AddPanel"
-onready var dialogues: Control = $Dialouges
+onready var list_menu: PopupMenu = $"%ListMenu"
 onready var list_scroll: ScrollContainer = $ListScrollContainer
 onready var list_container: HBoxContainer = $"%ListContainer"
 
@@ -73,26 +74,28 @@ func save():
 func set_data(data):drag_data = data
 
 func clear_data():
+	var idx = drag_data["Preview"].get_index()
+	drag_data["Preview"].queue_free()
 	match drag_data["Item"].get_groups()[0]:
 		"List":
-			var idx = drag_data["Preview"].get_index()
-			drag_data["Preview"].queue_free()
 			list_container.add_child(drag_data["Item"])
 			list_container.move_child(drag_data["Item"], idx)
 		"Card":
-			var idx = drag_data["Preview"].get_index()
-			drag_data["Preview"].queue_free()
 			drag_data["List"].card_container.add_child(drag_data["Item"])
 			drag_data["List"].card_container.move_child(drag_data["Item"], idx)
 	drag_data = null
 
 func _input(event):
-	if event is InputEventMouseButton && add_title_edit && add_title_edit.has_focus():
+	if add_title_edit && add_panel.visible:
 		if list_container.get_child_count() > 1:
-			if !add_title_edit.get_global_rect().has_point(get_global_mouse_position()):
+			var check_mouse =  event is InputEventMouseButton && !add_panel.get_global_rect().has_point(get_global_mouse_position())
+			if check_mouse || event.is_action_pressed("ui_cancel"):
 				add_button.show()
 				add_panel.hide()
 	if !event is InputEventMouseMotion:return
+	handle_drag_logic()
+
+func handle_drag_logic():
 	if !drag_data: return
 	var mouse_pos = get_local_mouse_position()
 	var scroll_horizontal = list_scroll.scroll_horizontal
@@ -109,7 +112,7 @@ func _input(event):
 			if !drag_data["Preview"] in list.card_container.get_children():
 				drag_data["Preview"].get_parent().remove_child(drag_data["Preview"])
 				list.card_container.add_child(drag_data["Preview"])
-			var scroll_vertical = list_scroll.scroll_vertical
+			var scroll_vertical = list.card_scroll.scroll_vertical
 			var title = list.title.rect_size.y
 			var card_size = drag_data["Preview"].rect_size.y + list.card_container.get_constant("separation")
 			var cards_count = list.card_container.get_child_count()
@@ -117,6 +120,7 @@ func _input(event):
 			yindex = 0 if yindex < 0 else yindex if yindex < cards_count else cards_count
 			list.card_container.move_child(drag_data["Preview"], yindex)
 			drag_data["List"] = list
+	
 
 func add_list(title = ""):
 	if title == "": return
@@ -129,13 +133,20 @@ func add_list(title = ""):
 	list.connect("drag_start", self, "set_data")
 	list.connect("drag_end", self, "clear_data")
 	list.connect("on_edit", self, "save")
+	list.connect("menu_pressed", list_menu, "edit")
 	list.connect("card_pressed", card_details, "card_pressed")
 	list_container.add_child(list)
 	list_container.move_child(list, list_container.get_child_count()-2)
 	list.title.title.text = title
-	list.title.title_edit.text = title
+	list.title.set_tooltip(title)
 
 func add_list_button_pressed(_n = ""):
-	if add_title_edit.text != "":
+	if add_title_edit.text.strip_edges() != "":
 		add_list(add_title_edit.text)
-		add_title_edit.select_all()
+		add_title_edit.text = ""
+		add_title_edit.grab_focus()
+
+func cancel_add_list(_n = ""):
+	if list_container.get_child_count() > 1:
+		$"%Cancel".show()
+	else: $"%Cancel".hide()

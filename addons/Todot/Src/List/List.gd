@@ -5,6 +5,7 @@ signal on_edit()
 signal drag_start(data)
 signal drag_end(data)
 signal card_pressed(card)
+signal menu_pressed(rect, list)
 
 const card_scene = preload("res://addons/Todot/Src/Card/CardButton.tscn")
 
@@ -23,8 +24,10 @@ func _ready():
 	title.connect("drag_end", self, "emit_signal", ["drag_end"])
 
 func _input(event):
-	if event is InputEventMouseButton && add_card_box && add_card_edit.has_focus():
-		if !add_card_box.get_global_rect().has_point(get_global_mouse_position()):
+	if add_card_box && add_card_box.visible:
+		yield(get_tree(), "idle_frame")
+		var check_mouse = event is InputEventMouseButton && !add_card_box.get_global_rect().has_point(get_global_mouse_position()) 
+		if check_mouse || event.is_action("ui_cancel"):
 			add_card_box.hide()
 			add_card_button.show()
 
@@ -37,8 +40,10 @@ func fix_theme(todot: Control):
 	add_stylebox_override("panel", todot.list_panel)
 
 func add_card_button_pressed(_n = ""):
+	if add_card_edit.text.strip_edges() == "": return
 	var card = Card.new(add_card_edit.text)
-	add_card_edit.select_all()
+	add_card_edit.text = ""
+	add_card_edit.grab_focus()
 	add_card(card)
 	emit_signal("on_edit")
 
@@ -53,8 +58,11 @@ func add_card(data: Card):
 
 func fix_size():
 	if !get_tree(): return
-	yield(get_tree().create_timer(0.0000000001), "timeout")
+	yield(get_tree(), "idle_frame")
 	if plugin_rect.encloses(card_container.get_global_rect()):
 		card_scroll.rect_min_size.y = card_container.rect_size.y
 	else:
 		rect_min_size.y = plugin_rect.end.y
+
+func _menu_pressed(rect):
+	emit_signal("menu_pressed", rect, self)

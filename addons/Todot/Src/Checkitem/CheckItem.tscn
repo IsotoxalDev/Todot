@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/Todot/Src/Title/Title.tscn" type="PackedScene" id=2]
+
+[node name="CheckItem" type="HBoxContainer"]
+margin_right = 1023.0
+margin_bottom = 24.0
+
+[node name="CheckBox" type="CheckBox" parent="."]
+margin_right = 24.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+flat = true
+
+[node name="Title" parent="." instance=ExtResource( 2 )]
+margin_left = 28.0
+margin_right = 995.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+
+[node name="Remove" type="Button" parent="."]
+margin_left = 999.0
+margin_right = 1023.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+text = "x"
+flat = true
+
+[connection signal="pressed" from="Remove" to="." method="_on_Remove_pressed"]

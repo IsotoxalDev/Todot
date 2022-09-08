@@ -1,0 +1,42 @@
+[gd_scene format=2]
+
+[node name="MoveListMenu" type="WindowDialog"]
+margin_right = 200.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 200, 100 )
+window_title = "Move List"
+
+[node name="Centrify" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="Centrify"]
+margin_left = 31.0
+margin_top = 26.0
+margin_right = 169.0
+margin_bottom = 74.0
+
+[node name="HBox" type="HBoxContainer" parent="Centrify/VBox"]
+margin_right = 138.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Centrify/VBox/HBox"]
+margin_top = 5.0
+margin_right = 60.0
+margin_bottom = 19.0
+text = "Position: "
+
+[node name="MoveListSpin" type="SpinBox" parent="Centrify/VBox/HBox"]
+unique_name_in_owner = true
+margin_left = 64.0
+margin_right = 138.0
+margin_bottom = 24.0
+min_value = 1.0
+value = 1.0
+
+[node name="MoveButton" type="Button" parent="Centrify/VBox"]
+unique_name_in_owner = true
+margin_top = 28.0
+margin_right = 138.0
+margin_bottom = 48.0
+text = "Move"

@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/Todot/Src/Checklist/AddChecklistPopup.gd" type="Script" id=1]
+
+[node name="AddChecklistPopup" type="WindowDialog"]
+unique_name_in_owner = true
+margin_right = 200.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 200, 100 )
+window_title = "Add Checklist"
+script = ExtResource( 1 )
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+custom_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBox"]
+margin_right = 190.0
+margin_bottom = 14.0
+text = "Title: "
+
+[node name="VBox" type="VBoxContainer" parent="VBox"]
+margin_top = 24.0
+margin_right = 190.0
+margin_bottom = 72.0
+
+[node name="Edit" type="LineEdit" parent="VBox/VBox"]
+unique_name_in_owner = true
+margin_right = 190.0
+margin_bottom = 24.0
+text = "Checklist"
+
+[node name="AddButton" type="Button" parent="VBox/VBox"]
+margin_top = 28.0
+margin_right = 37.0
+margin_bottom = 48.0
+size_flags_horizontal = 0
+text = "Add"
+
+[connection signal="about_to_show" from="." to="." method="_on_AddChecklistPopup_about_to_show"]
+[connection signal="text_entered" from="VBox/VBox/Edit" to="." method="add_checklist"]
+[connection signal="pressed" from="VBox/VBox/AddButton" to="." method="add_checklist"]
