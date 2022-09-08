@@ -9,19 +9,13 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "PanelContainer",
-"class": "List_preview",
+"base": "Resource",
+"class": "Card",
 "language": "GDScript",
-"path": "res://addons/Todot/Src/Scripts/ListPreview.gd"
-}, {
-"base": "Control",
-"class": "Todo",
-"language": "GDScript",
-"path": "res://addons/Todot/Src/Scripts/Todo.gd"
+"path": "res://addons/Todot/Src/Card/Card.gd"
 } ]
 _global_script_class_icons={
-"List_preview": "",
-"Todo": ""
+"Card": ""
 }
 
 [application]

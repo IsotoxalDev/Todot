@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/Todot/Src/Title/Title.gd" type="Script" id=1]
+[ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://addons/Todot/Assets/Menu.svg" type="Texture" id=3]
+[ext_resource path="res://addons/Todot/Assets/MenuHover.svg" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[node name="Title" type="Button"]
+margin_right = 280.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 280, 55 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+align = 0
+script = ExtResource( 1 )
+drag_x = false
+drag_y = false
+
+[node name="HBox" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VBox" type="VBoxContainer" parent="HBox"]
+margin_right = 276.0
+margin_bottom = 55.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="HBox/VBox"]
+unique_name_in_owner = true
+margin_right = 276.0
+margin_bottom = 55.0
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+valign = 1
+autowrap = true
+
+[node name="TitleEdit" type="LineEdit" parent="HBox/VBox"]
+unique_name_in_owner = true
+visible = false
+margin_top = 33.0
+margin_right = 252.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+placeholder_text = "Enter Title"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBox"]
+margin_left = 280.0
+margin_right = 280.0
+margin_bottom = 55.0
+
+[node name="MenuButton" type="TextureButton" parent="HBox/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+margin_right = 24.0
+margin_bottom = 24.0
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+
+[connection signal="resized" from="HBox/VBox/Title" to="." method="fix_size"]
+[connection signal="text_entered" from="HBox/VBox/TitleEdit" to="." method="_on_TitleEdit_text_entered"]
+[connection signal="pressed" from="HBox/VBoxContainer/MenuButton" to="." method="_on_MenuButton_pressed"]

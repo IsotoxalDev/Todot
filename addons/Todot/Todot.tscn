@@ -1,15 +1,37 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://addons/Todot/Todot.tres" type="Theme" id=1]
-[ext_resource path="res://addons/Todot/Src/Scripts/Mouse.gd" type="Script" id=3]
+[ext_resource path="res://addons/Todot/Src/Card/CardDetails.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/Todot/Src/List/ListMenu.gd" type="Script" id=3]
 [ext_resource path="res://addons/Todot/Todot.gd" type="Script" id=4]
-[ext_resource path="res://addons/Todot/Src/Scenes/TodoPopup.tscn" type="PackedScene" id=5]
-[ext_resource path="res://addons/Todot/Src/Scripts/AddListButton.gd" type="Script" id=6]
-[ext_resource path="res://addons/Todot/Roboto-Light.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://addons/Todot/Src/List/MoveListMenu.tscn" type="PackedScene" id=5]
 
-[sub_resource type="DynamicFont" id=1]
-size = 40
-font_data = ExtResource( 7 )
+[sub_resource type="StyleBoxFlat" id=3292]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.18, 0.207, 0.279, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.14, 0.161, 0.217, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4976]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.2, 0.23, 0.31, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.35, 0.374375, 0.439375, 1 )
+expand_margin_top = 24.0
+shadow_color = Color( 0, 0, 0, 0.3 )
+shadow_size = 4
 
 [node name="Todot" type="Control"]
 anchor_right = 1.0
@@ -18,39 +40,81 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ListScrollContainer" type="ScrollContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
-follow_focus = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scroll_vertical_enabled = false
 
 [node name="ListContainer" type="HBoxContainer" parent="ListScrollContainer"]
-margin_right = 35.0
-margin_bottom = 56.0
+unique_name_in_owner = true
+margin_right = 276.0
+margin_bottom = 600.0
+size_flags_vertical = 3
 custom_constants/separation = 30
 
-[node name="Button" type="Button" parent="ListScrollContainer/ListContainer"]
-margin_right = 35.0
-margin_bottom = 56.0
+[node name="Add" type="VBoxContainer" parent="ListScrollContainer/ListContainer"]
+margin_right = 276.0
+margin_bottom = 600.0
+
+[node name="AddButton" type="Button" parent="ListScrollContainer/ListContainer/Add"]
+unique_name_in_owner = true
+visible = false
+margin_right = 280.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 280, 55 )
 size_flags_vertical = 0
-custom_fonts/font = SubResource( 1 )
-text = "+"
-script = ExtResource( 6 )
+text = "+ add another list"
+align = 0
+
+[node name="AddPanel" type="PanelContainer" parent="ListScrollContainer/ListContainer/Add"]
+unique_name_in_owner = true
+margin_right = 276.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/panel = SubResource( 3292 )
+
+[node name="VBox" type="VBoxContainer" parent="ListScrollContainer/ListContainer/Add/AddPanel"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 270.0
+margin_bottom = 96.0
+
+[node name="AddTitleEdit" type="LineEdit" parent="ListScrollContainer/ListContainer/Add/AddPanel/VBox"]
+unique_name_in_owner = true
+margin_right = 264.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 264, 55 )
+placeholder_text = "Enter list title..."
+
+[node name="HBox" type="HBoxContainer" parent="ListScrollContainer/ListContainer/Add/AddPanel/VBox"]
+margin_top = 59.0
+margin_right = 264.0
+margin_bottom = 92.0
+size_flags_vertical = 3
+
+[node name="AddList" type="Button" parent="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox"]
+margin_right = 61.0
+margin_bottom = 33.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Add list"
+
+[node name="Cancel" type="Button" parent="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox"]
+unique_name_in_owner = true
+margin_left = 65.0
+margin_right = 85.0
+margin_bottom = 33.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "X"
+flat = true
 
 [node name="Dialouges" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DialogueBackground" type="ColorRect" parent="Dialouges"]
 visible = false
@@ -61,20 +125,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TodoPopup" parent="Dialouges" instance=ExtResource( 5 )]
+[node name="CardDetails" parent="Dialouges" instance=ExtResource( 2 )]
+unique_name_in_owner = true
+custom_styles/panel = SubResource( 4976 )
 
-[node name="Mouse" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="ListMenu" type="PopupMenu" parent="Dialouges"]
+unique_name_in_owner = true
+margin_right = 191.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 200, 150 )
+items = [ "Add Card", null, 0, false, false, 0, 0, null, "", false, "Copy List", null, 0, false, false, 1, 0, null, "", false, "Move List", null, 0, false, false, 2, 0, null, "", false, "Delete List", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Move all cards in this list...", null, 0, false, false, 5, 0, null, "", false, "Delete all cards in this list...", null, 0, false, false, 6, 0, null, "", false ]
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+todot = NodePath("../..")
+move_list_menu = NodePath("../MoveListMenu")
 
-[connection signal="pressed" from="ListScrollContainer/ListContainer/Button" to="ListScrollContainer/ListContainer/Button" method="add_list"]
-[connection signal="about_to_show" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="show"]
-[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/DialogueBackground" method="hide"]
-[connection signal="popup_hide" from="Dialouges/TodoPopup" to="Dialouges/TodoPopup" method="_on_TodoPopup_popup_hide"]
+[node name="MoveListMenu" parent="Dialouges" instance=ExtResource( 5 )]
+
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddButton" to="." method="cancel_add_list"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddButton" to="ListScrollContainer/ListContainer/Add/AddButton" method="hide"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddButton" to="ListScrollContainer/ListContainer/Add/AddPanel" method="show"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddButton" to="ListScrollContainer/ListContainer/Add/AddPanel/VBox/AddTitleEdit" method="grab_focus"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddButton" to="ListScrollContainer/ListContainer/Add/AddPanel/VBox/AddTitleEdit" method="set_text" binds= [ "" ]]
+[connection signal="text_entered" from="ListScrollContainer/ListContainer/Add/AddPanel/VBox/AddTitleEdit" to="." method="add_list_button_pressed"]
+[connection signal="text_entered" from="ListScrollContainer/ListContainer/Add/AddPanel/VBox/AddTitleEdit" to="." method="cancel_add_list"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox/AddList" to="." method="add_list_button_pressed"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox/AddList" to="." method="cancel_add_list"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox/Cancel" to="ListScrollContainer/ListContainer/Add/AddButton" method="show"]
+[connection signal="pressed" from="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox/Cancel" to="ListScrollContainer/ListContainer/Add/AddPanel" method="hide"]
+[connection signal="popup_hide" from="Dialouges/CardDetails" to="Dialouges/DialogueBackground" method="hide"]
+[connection signal="popup_hide" from="Dialouges/CardDetails" to="Dialouges/CardDetails" method="_on_CardDetails_popup_hide"]
+[connection signal="index_pressed" from="Dialouges/ListMenu" to="Dialouges/ListMenu" method="_index_pressed"]
