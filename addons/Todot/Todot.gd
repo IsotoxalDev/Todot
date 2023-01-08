@@ -98,6 +98,7 @@ func _input(event):
 func handle_drag_logic():
 	if !drag_data: return
 	var mouse_pos = get_local_mouse_position()
+	var mouse_pos_global = get_global_mouse_position()
 	var scroll_horizontal = list_scroll.scroll_horizontal
 	var list_size = drag_data["Preview"].rect_size.x+list_container.get_constant("separation")
 	var lists_count = list_container.get_child_count()-2
@@ -114,10 +115,12 @@ func handle_drag_logic():
 				list.card_container.add_child(drag_data["Preview"])
 			var scroll_vertical = list.card_scroll.scroll_vertical
 			var title = list.title.rect_size.y
-			var card_size = drag_data["Preview"].rect_size.y + list.card_container.get_constant("separation")
-			var cards_count = list.card_container.get_child_count()
-			var yindex = floor((mouse_pos.y+scroll_vertical+title)/card_size)-2
-			yindex = 0 if yindex < 0 else yindex if yindex < cards_count else cards_count
+			var cards_size = 0
+			var yindex = 0
+			for card in list.card_container.get_children():
+				if card.get_global_rect().position.y > mouse_pos_global.y: break
+				if card.get_global_rect().position.y < mouse_pos_global.y:
+					yindex +=1
 			list.card_container.move_child(drag_data["Preview"], yindex)
 			drag_data["List"] = list
 	

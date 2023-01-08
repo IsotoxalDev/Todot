@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://addons/Todot/Src/Card/CardButton.gd" type="Script" id=1]
-[ext_resource path="res://addons/Todot/Assets/Edit.svg" type="Texture" id=2]
+[ext_resource path="res://addons/Todot/Assets/Edit.svg" type="Texture" id=1]
+[ext_resource path="res://addons/Todot/Src/Card/Card.gd" type="Script" id=2]
 [ext_resource path="res://addons/Todot/Assets/EditHover.svg" type="Texture" id=3]
 
 [node name="CardButton" type="Button" groups=["Card"]]
 margin_right = 12.0
 margin_bottom = 20.0
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="HBox" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -36,7 +36,7 @@ margin_bottom = 24.0
 unique_name_in_owner = true
 margin_right = 24.0
 margin_bottom = 24.0
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 1 )
 texture_hover = ExtResource( 3 )
 
 [connection signal="resized" from="HBox/Title" to="." method="fix_size"]

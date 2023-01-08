@@ -76,19 +76,19 @@ func get_drag_data(position) -> Dictionary:
 	preview.rect_size = data["Item"].rect_size
 	var c = Control.new()
 	c.add_child(preview)
+	c.set_position(data["Item"].rect_global_position)
 	var pos = get_local_mouse_position()
 	if drag_x:
 		preview.rect_position.x = -pos.x
 	if drag_y:
 		preview.rect_position.y = -pos.y
-#	c.set_position(pos)
 	set_drag_preview(c)
 	c.connect("item_rect_changed", self, "preview_control", [c,
 		drag_x, drag_y, data["Item"].rect_global_position])
-#	drag_preview(c, drag_x, drag_y)
+#	c.connect("item_rect_changed", self, , [data])
 	
 	data["Preview"] = ColorRect.new()
-	data["Preview"].color = Color(0, 0, 0, 0.5)
+	data["Preview"].color = Color(0, 0, 0, 0.2)
 	data["Preview"].rect_min_size = data["Item"].rect_size
 	data["Preview"].size_flags_vertical = SIZE_EXPAND
 	data["Item"].get_parent().add_child(data["Preview"])

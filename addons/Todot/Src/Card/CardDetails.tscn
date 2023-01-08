@@ -22,7 +22,6 @@ use_filter = true
 font_data = ExtResource( 2 )
 
 [node name="CardDetails" type="WindowDialog"]
-visible = true
 margin_right = 500.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 550, 500 )
@@ -193,4 +192,4 @@ margin_bottom = 40.0
 [node name="AddChecklistPopup" parent="Dialogs" instance=ExtResource( 7 )]
 
 [connection signal="pressed" from="VBox/ChecklistArea/AddTaskArea/ScrollContainer/VBoxContainer/AddChecklist" to="." method="_on_AddChecklist_pressed"]
-[connection signal="add_checklist" from="Dialogs/AddChecklistPopup" to="." method="add_checklist"]
+[connection signal="add_checklist" from="Dialogs/AddChecklistPopup" to="." method="add_checklist_pressed"]

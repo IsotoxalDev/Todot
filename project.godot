@@ -12,17 +12,29 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Card",
 "language": "GDScript",
-"path": "res://addons/Todot/Src/Card/Card.gd"
+"path": "res://addons/Todot/Src/Card/CardData.gd"
+}, {
+"base": "Resource",
+"class": "CheckItem",
+"language": "GDScript",
+"path": "res://addons/Todot/Src/Checkitem/CheckItemData.gd"
+}, {
+"base": "Resource",
+"class": "Checklist",
+"language": "GDScript",
+"path": "res://addons/Todot/Src/Checklist/ChecklistData.gd"
 } ]
 _global_script_class_icons={
-"Card": ""
+"Card": "",
+"CheckItem": "",
+"Checklist": ""
 }
 
 [application]
 
 config/name="Todot"
 run/main_scene="res://addons/Todot/Todot.tscn"
-config/icon="res://icon.png"
+config/icon="res://addons/Todot/Assets/Todo.svg"
 
 [editor_plugins]
 

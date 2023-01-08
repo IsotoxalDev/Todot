@@ -103,6 +103,7 @@ text = "Add list"
 
 [node name="Cancel" type="Button" parent="ListScrollContainer/ListContainer/Add/AddPanel/VBox/HBox"]
 unique_name_in_owner = true
+visible = false
 margin_left = 65.0
 margin_right = 85.0
 margin_bottom = 33.0

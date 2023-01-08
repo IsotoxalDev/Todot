@@ -7,7 +7,7 @@ signal drag_end(data)
 signal card_pressed(card)
 signal menu_pressed(rect, list)
 
-const card_scene = preload("res://addons/Todot/Src/Card/CardButton.tscn")
+const card_scene = preload("res://addons/Todot/Src/Card/Card.tscn")
 
 onready var title = $"%ListTitle"
 onready var card_scroll = $"%CardScroll"
